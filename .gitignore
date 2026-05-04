@@ -73,3 +73,11 @@ Thumbs.db
 
 #local resources
 local_resources/
+
+# test_outputs
+src/test/coursys_api/output/
+src/test/verify_db/verify_db_output.txt
+
+# Logs
+# 02_collect_offerings.py
+data/raw/collection_log.txt
