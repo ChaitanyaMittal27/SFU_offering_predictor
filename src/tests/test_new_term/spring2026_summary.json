@@ -1,0 +1,35 @@
+{
+  "term": "spring 2026",
+  "total_rows": 3184,
+  "full_rows": 1650,
+  "cold_start_rows": 1534,
+  "accuracy": {
+    "offered": 100.0,
+    "capacity": 64.42,
+    "enrollment": 69.58
+  },
+  "mae": {
+    "capacity": 26.75,
+    "enrollment": 20.933
+  },
+  "vs_2025_test": [
+    {
+      "metric": "offered",
+      "2025_test": 100.0,
+      "spring_2026": 100.0,
+      "delta": 0.0
+    },
+    {
+      "metric": "capacity",
+      "2025_test": 74.4,
+      "spring_2026": 64.42424242424242,
+      "delta": -9.975757575757584
+    },
+    {
+      "metric": "enrollment",
+      "2025_test": 76.1,
+      "spring_2026": 69.57575757575758,
+      "delta": -6.524242424242416
+    }
+  ]
+}

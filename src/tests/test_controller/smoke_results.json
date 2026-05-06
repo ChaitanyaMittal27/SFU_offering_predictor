@@ -1,0 +1,80 @@
+{
+  "CMPT_225_fall_2027": {
+    "status": "ok",
+    "dept": "CMPT",
+    "course_num": "225",
+    "semester": "fall",
+    "year": 2027,
+    "offered_prob": 0.9998,
+    "capacity": 8,
+    "enrollment": 6,
+    "is_cold_start": false,
+    "is_unlikely": false,
+    "error": null
+  },
+  "CMPT_120_spring_2026": {
+    "status": "ok",
+    "dept": "CMPT",
+    "course_num": "120",
+    "semester": "spring",
+    "year": 2026,
+    "offered_prob": 0.9998,
+    "capacity": 8,
+    "enrollment": 9,
+    "is_cold_start": false,
+    "is_unlikely": false,
+    "error": null
+  },
+  "MATH_151_fall_2026": {
+    "status": "ok",
+    "dept": "MATH",
+    "course_num": "151",
+    "semester": "fall",
+    "year": 2026,
+    "offered_prob": 0.9998,
+    "capacity": 10,
+    "enrollment": 9,
+    "is_cold_start": false,
+    "is_unlikely": false,
+    "error": null
+  },
+  "CMPT_225_summer_2030": {
+    "status": "ok",
+    "dept": "CMPT",
+    "course_num": "225",
+    "semester": "summer",
+    "year": 2030,
+    "offered_prob": 0.9998,
+    "capacity": 8,
+    "enrollment": 6,
+    "is_cold_start": false,
+    "is_unlikely": false,
+    "error": null
+  },
+  "CMPT_999_fall_2027": {
+    "status": "error",
+    "dept": "CMPT",
+    "course_num": "999",
+    "semester": "fall",
+    "year": 2027,
+    "offered_prob": null,
+    "capacity": null,
+    "enrollment": null,
+    "is_cold_start": null,
+    "is_unlikely": null,
+    "error": "Course not found: CMPT 999. Check dept_code and course_number."
+  },
+  "CMPT_225_autumn_2027": {
+    "status": "error",
+    "dept": "CMPT",
+    "course_num": "225",
+    "semester": "autumn",
+    "year": 2027,
+    "offered_prob": null,
+    "capacity": null,
+    "enrollment": null,
+    "is_cold_start": null,
+    "is_unlikely": null,
+    "error": "semester must be one of ['fall', 'spring', 'summer'], got: 'autumn'"
+  }
+}

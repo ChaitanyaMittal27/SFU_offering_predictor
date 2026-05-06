@@ -1,0 +1,2 @@
+CMPT 120 Spring
+  offered_prob : 0.9998

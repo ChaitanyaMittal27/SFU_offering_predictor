@@ -1,0 +1,4 @@
+CMPT 225 Fall
+  offered_prob : 0.9998
+  capacity     : 4.6
+  enrollment   : 4.3

@@ -1,0 +1,234 @@
+======================================================================
+  Test: CMPT_fall_2025
+  Popular dept, current term
+  Dept: CMPT   Semester: 1257  (Fall 2025)
+  Run:  2026-05-03 15:15:47
+======================================================================
+
+  API returned 183 rows
+
+  COURSE       SEC      TYPE    PRI   RAW         FILL%  MATCH   INSTRUCTOR
+  ------------------------------------------------------------------------------------------
+  CMPT 105W    D100     LEC     YES   93/100       93.0%  NO      Khangura, Harinder
+  CMPT 105W    E100     LEC     YES   190/200      95.0%  NO      Lo, Felix
+  CMPT 120     D100     LEC     YES   161/331      48.6%  YES     Cukierman, Diana
+  CMPT 120     D200     LEC     YES   83/200       41.5%  YES     Khangura, Harinder
+  CMPT 120     D300     LEC     YES   199/200      99.5%  YES     Vincent, Nicholas
+  CMPT 125     D100     LEC     YES   192/200      96.0%  YES     Shinkar, Igor
+  CMPT 130     D100     LEC     YES   206/212      97.2%  YES     Edgar, John
+  CMPT 201     D100     LEC     YES   149/150      99.3%  YES     Ko, Steven
+  CMPT 201     D200     LEC     YES   200/200     100.0%  YES     Fraser, Brian; Ko, Steven; Li, Linyi
+  CMPT 210     D100     LEC     YES   200/200     100.0%  YES     Vaswani, Sharan
+  CMPT 213     D100     LEC     YES   70/120       58.3%  YES     Fraser, Brian
+  CMPT 225     D100     LEC     YES   200/200     100.0%  YES     Shinkar, Igor
+  CMPT 225     D200     LEC     YES   82/200       41.0%  YES     Edgar, John
+  CMPT 263     D200     LEC     YES   41/120       34.2%  YES     Kim, Lawrence
+  CMPT 276     D100     LEC     YES   96/100       96.0%  YES     Alimadadi Jani, Saba
+  CMPT 276     D200     LEC     YES   68/100       68.0%  YES     Minns, Jocelyn
+  CMPT 276     D300     LEC     YES   95/100       95.0%  YES     Jamshidi, Kasra
+  CMPT 295     D100     LEC     YES   200/200     100.0%  YES     Baker, Greg
+  CMPT 295     D200     LEC     YES   155/200      77.5%  YES     Shriraman, Arrvindh
+  CMPT 307     D100     LEC     YES   145/150      96.7%  YES     Wiese, Kay C
+  CMPT 307     E100     LEC     YES   97/150       64.7%  YES     Kabanets, Valentine
+  CMPT 308     D100     LEC     YES   26/100       26.0%  YES     Kabanets, Valentine
+  CMPT 310     D100     LEC     YES   127/141      90.1%  YES     Badali, Morteza; Libbrecht, Maxwell
+  CMPT 310     D200     LEC     YES   134/150      89.3%  YES     Badali, Morteza; Libbrecht, Maxwell
+  CMPT 340     OL01     ONLINE  YES   73/150       48.7%  YES     Hamarneh, Ghassan
+  CMPT 354     D100     LEC     YES   150/150     100.0%  YES     Miao, Zhengjie
+  CMPT 361     D100     LEC     YES   117/150      78.0%  YES     Aksoy, Yagiz; Peng, Xue Bin Jason
+  CMPT 362     D100     LEC     YES   135/150      90.0%  YES     Yang, Xingdong
+  CMPT 365     D100     LEC     YES   143/150      95.3%  YES     Chou, David
+  CMPT 371     D100     LEC     YES   141/141     100.0%  YES     Baghban Karimi, Ouldooz
+  CMPT 373     D100     LEC     YES   99/100       99.0%  YES     Sumner, Nick
+  CMPT 376W    D100     LEC     YES   100/100     100.0%  NO      Lo, Felix
+  CMPT 376W    D200     LEC     YES   101/100     101.0%  NO      Eftenaru, Cristina
+  CMPT 383     D100     LEC     YES   119/150      79.3%  YES     Miltner, Anders
+  CMPT 403     D100     LEC     YES   138/150      92.0%  YES     Wu, Jianliang
+  CMPT 405     D100     LEC     YES   45/75        60.0%  YES     Gu, Qianping
+  CMPT 409     D100     LEC     YES   10/30        33.3%  YES     Ternovska, Evgenia (Eugenia)
+  CMPT 409     D200     LEC     YES   8/20         40.0%  YES     Vaswani, Sharan
+  CMPT 410     D100     LEC     YES   103/130      79.2%  YES     Chen, Mo
+  CMPT 413     D100     LEC     YES   84/100       84.0%  YES     Sarkar, Anoop
+  CMPT 415     D010     LEC     YES   2/2         100.0%  YES     Hamarneh, Ghassan
+  CMPT 415     D011     LEC     YES   4/4         100.0%  YES     Kim, Lawrence
+  CMPT 415     D012     LEC     YES   1/1         100.0%  YES     Li, Ke
+  CMPT 415     D100     LEC     YES   1/1         100.0%  YES     Chan, Bobby
+  CMPT 415     D200     LEC     YES   2/2         100.0%  YES     Vincent, Nicholas
+  CMPT 415     D300     LEC     YES   1/1         100.0%  YES     Chilana, Parmit Kaur
+  CMPT 415     D400     LEC     YES   6/6         100.0%  YES     Fraser, Brian
+  CMPT 415     D500     LEC     YES   1/1         100.0%  YES     Ko, Steven
+  CMPT 415     D600     LEC     YES   1/1         100.0%  YES     Savva, Manolis
+  CMPT 415     D700     LEC     YES   1/1         100.0%  YES     Shriraman, Arrvindh
+  CMPT 415     D800     LEC     YES   1/1         100.0%  YES     Yang, Xingdong
+  CMPT 415     D900     LEC     YES   2/2         100.0%  YES     Sumner, Nick
+  CMPT 416     D100     LEC     YES   1/5          20.0%  YES     Vincent, Nicholas
+  CMPT 416     D200     LEC     YES   2/5          40.0%  YES     Chen, Mo
+  CMPT 416     D300     LEC     YES   3/5          60.0%  YES     Fraser, Brian
+  CMPT 416     D400     LEC     YES   3/5          60.0%  YES     Hamarneh, Ghassan
+  CMPT 416     D500     LEC     YES   1/5          20.0%  YES     Ko, Steven
+  CMPT 416     D600     LEC     YES   1/5          20.0%  YES     Miltner, Anders; Sumner, Nick
+  CMPT 416     D700     LEC     YES   4/5          80.0%  YES     Kim, Lawrence
+  CMPT 417     D100     LEC     YES   92/97        94.8%  YES     Ma, Hang
+  CMPT 419     D100     LEC     YES   20/29        69.0%  YES     Chen, Wuyang
+  CMPT 419     D200     LEC     YES   44/45        97.8%  YES     Vincent, Nicholas
+  CMPT 419     D300     LEC     YES   14/14       100.0%  YES     Schulte, Oliver
+  CMPT 426     D100     LEC     YES   49/80        61.2%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 426     D200     LEC     YES   4/80          5.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 426     D300     LEC     YES   4/40         10.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 426     D400     LEC     YES   2/40          5.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 426     I100     IND     no    3/40          7.5%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 427     D100     LEC     YES   43/80        53.8%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 427     D200     LEC     YES   6/80          7.5%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 427     D300     LEC     YES   4/40         10.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 427     D400     LEC     YES   0/40          0.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 427     I100     IND     no    0/40          0.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 428     D100     LEC     YES   36/80        45.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 428     D200     LEC     YES   6/40         15.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 428     D300     LEC     YES   4/40         10.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 428     D400     LEC     YES   1/40          2.5%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 428     I100     IND     no    0/40          0.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 429     D100     LEC     YES   23/40        57.5%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 429     D200     LEC     YES   1/40          2.5%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 429     D300     LEC     YES   4/40         10.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 429     D400     LEC     YES   0/40          0.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 429     I100     IND     no    0/40          0.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 430     D100     LEC     YES   9/80         11.2%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 430     D200     LEC     YES   0/80          0.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 430     D300     LEC     YES   1/40          2.5%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 430     D400     LEC     YES   0/40          0.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 430     I100     IND     no    0/40          0.0%  YES     Eftenaru, Cristina; Greaves, Stephanie
+  CMPT 431     D100     LEC     YES   94/115       81.7%  YES     Vora, Keval
+  CMPT 441     E100     LEC     YES   40/55        72.7%  YES     Wiese, Kay C
+  CMPT 454     D100     LEC     YES   119/150      79.3%  YES     Wang, Ke
+  CMPT 459     D100     LEC     YES   85/94        90.4%  YES     Ester, Martin
+  CMPT 464     D100     LEC     YES   33/45        73.3%  YES     Zhang, Richard
+  CMPT 469     D100     LEC     YES   10/22        45.5%  YES     Yang, Xingdong
+  CMPT 477     D100     LEC     YES   90/91        98.9%  YES     Wang, Yuepeng
+  CMPT 479     D100     LEC     YES   16/19        84.2%  YES     Alimadadi Jani, Saba
+  CMPT 479     E100     LEC     YES   11/20        55.0%  YES     Wu, Jianliang
+  CMPT 479     E200     LEC     YES   6/20         30.0%  YES     Vora, Keval
+  CMPT 489     D100     LEC     YES   22/25        88.0%  YES     Wang, Yuepeng
+  CMPT 494     D100     LEC     YES   4/10         40.0%  YES     Tayebi, Mohammad
+  CMPT 494     D200     LEC     YES   3/10         30.0%  YES     Yin, KangKang
+  CMPT 494     D300     LEC     YES   2/10         20.0%  YES     Li, Ke
+  CMPT 495     D100     LEC     YES   4/10         40.0%  YES     Tayebi, Mohammad
+  CMPT 495     D200     LEC     YES   3/10         30.0%  YES     Li, Ke
+  CMPT 495     D300     LEC     YES   2/2         100.0%  YES     Vora, Keval
+  CMPT 496     D100     LEC     YES   1/10         10.0%  YES     Chan, Bobby
+  CMPT 496     D200     LEC     YES   0/10          0.0%  YES     
+  CMPT 497     D100     LEC     YES   0/5           0.0%  YES     
+  CMPT 498     D100     LEC     YES   0/2           0.0%  YES     
+  CMPT 498     D200     LEC     YES   0/2           0.0%  YES     
+  CMPT 498     D300     LEC     YES   0/2           0.0%  YES     
+  CMPT 626     G300     LEC     YES   7/5         140.0%  YES     Eftenaru, Cristina
+  CMPT 626     G400     LEC     YES   2/5          40.0%  YES     Eftenaru, Cristina
+  CMPT 626     G500     LEC     YES   8/5         160.0%  YES     Eftenaru, Cristina
+  CMPT 626     G600     LEC     YES   0/5           0.0%  YES     Eftenaru, Cristina
+  CMPT 626     G700     LEC     YES   2/5          40.0%  YES     Eftenaru, Cristina
+  CMPT 626     G800     LEC     YES   2/5          40.0%  YES     Eftenaru, Cristina
+  CMPT 626     I100     IND     no    0/5           0.0%  YES     Eftenaru, Cristina
+  CMPT 626     I200     IND     no    2/5          40.0%  YES     Eftenaru, Cristina
+  CMPT 626     I400     IND     no    1/5          20.0%  YES     Eftenaru, Cristina
+  CMPT 627     G300     LEC     YES   19/30        63.3%  YES     Eftenaru, Cristina
+  CMPT 627     G400     LEC     YES   2/15         13.3%  YES     Eftenaru, Cristina
+  CMPT 627     G500     LEC     YES   2/15         13.3%  YES     Eftenaru, Cristina
+  CMPT 627     G600     LEC     YES   0/5           0.0%  YES     Eftenaru, Cristina
+  CMPT 627     G700     LEC     YES   8/15         53.3%  YES     Eftenaru, Cristina
+  CMPT 627     G800     LEC     YES   1/5          20.0%  YES     Eftenaru, Cristina
+  CMPT 627     I100     IND     no    0/5           0.0%  YES     Eftenaru, Cristina
+  CMPT 627     I200     IND     no    0/5           0.0%  YES     Eftenaru, Cristina
+  CMPT 627     I400     IND     no    0/5           0.0%  YES     Eftenaru, Cristina
+  CMPT 628     G400     LEC     YES   1/2          50.0%  YES     Eftenaru, Cristina
+  CMPT 631     G100     LEC     YES   4/10         40.0%  YES     
+  CMPT 701     G100     LEC     YES   2/30          6.7%  YES     Ternovska, Evgenia (Eugenia)
+  CMPT 705     G100     LEC     YES   9/30         30.0%  YES     Gu, Qianping
+  CMPT 711     G100     LEC     YES   8/15         53.3%  YES     Wiese, Kay C
+  CMPT 713     G100     LEC     YES   38/50        76.0%  YES     Sarkar, Anoop
+  CMPT 726     G100     LEC     YES   84/130       64.6%  YES     Chen, Mo
+  CMPT 729     G100     LEC     YES   57/50       114.0%  YES     Peng, Xue Bin Jason
+  CMPT 732     G100     LEC     YES   45/80        56.2%  YES     Baker, Greg; Bergner, Steven
+  CMPT 742     G100     LEC     YES   20/35        57.1%  YES     Mahdavi-Amiri, Ali
+  CMPT 762     G100     LEC     YES   14/120       11.7%  YES     Aksoy, Yagiz
+  CMPT 764     G100     LEC     YES   15/45        33.3%  YES     Zhang, Richard
+  CMPT 766     G100     LEC     YES   25/50        50.0%  YES     Yin, KangKang
+  CMPT 777     G100     LEC     YES   13/24        54.2%  YES     Wang, Yuepeng
+  CMPT 782     G100     LEC     YES   24/35        68.6%  YES     Tayebi, Mohammad
+  CMPT 785     G100     LEC     YES   18/35        51.4%  YES     Tayebi, Mohammad
+  CMPT 786     G100     LEC     YES   11/36        30.6%  YES     Baghban Karimi, Ouldooz
+  CMPT 789     G100     LEC     YES   29/50        58.0%  YES     Alimomeni, Mohsen
+  CMPT 827     G100     LEC     YES   5/13         38.5%  YES     Ma, Hang
+  CMPT 894     G010     LEC     YES   0/5           0.0%  YES     Wang, Ke
+  CMPT 894     G011     LEC     YES   0/5           0.0%  YES     Chen, Mo
+  CMPT 894     G012     LEC     YES   1/5          20.0%  YES     Ester, Martin
+  CMPT 894     G013     LEC     YES   0/5           0.0%  YES     Chang, Angel
+  CMPT 894     G014     LEC     YES   1/5          20.0%  YES     Peng, Xue Bin Jason
+  CMPT 894     G015     LEC     YES   0/5           0.0%  YES     Bulatov, Andrei
+  CMPT 894     G100     LEC     YES   0/5           0.0%  YES     Wang, Tianzheng
+  CMPT 894     G200     LEC     YES   0/5           0.0%  YES     Vora, Keval
+  CMPT 894     G300     LEC     YES   1/5          20.0%  YES     Mahdavi-Amiri, Ali
+  CMPT 894     G400     LEC     YES   0/5           0.0%  YES     Wang, Tao
+  CMPT 894     G500     LEC     YES   0/5           0.0%  YES     Savva, Manolis
+  CMPT 894     G600     LEC     YES   0/5           0.0%  YES     Wang, Yuepeng
+  CMPT 894     G700     LEC     YES   0/5           0.0%  YES     Chilana, Parmit Kaur
+  CMPT 894     G800     LEC     YES   1/5          20.0%  YES     Kim, Lawrence
+  CMPT 894     G900     LEC     YES   1/5          20.0%  YES     Miltner, Anders
+  CMPT 895     G100     LEC     YES   1/5          20.0%  YES     
+  CMPT 896     G100     LEC     YES   1/10         10.0%  YES     
+  CMPT 896     G200     LEC     YES   0/10          0.0%  YES     
+  CMPT 897     G100     LEC     YES   0/5           0.0%  YES     
+  CMPT 897     G200     LEC     YES   0/5           0.0%  YES     
+  CMPT 898     G100     LEC     YES   71/180       39.4%  YES     
+  CMPT 898     G200     LEC     YES   0/10          0.0%  YES     
+  CMPT 899     G100     LEC     YES   164/180      91.1%  YES     
+  CMPT 899     G200     LEC     YES   0/10          0.0%  YES     
+  CMPT 980     G100     LEC     YES   13/15        86.7%  YES     Vincent, Nicholas
+  CMPT 980     G200     LEC     YES   2/20         10.0%  YES     Wang, Yuepeng
+  CMPT 981     G100     LEC     YES   10/25        40.0%  YES     Vaswani, Sharan
+  CMPT 982     G100     LEC     YES   4/17         23.5%  YES     Alimadadi Jani, Saba
+  CMPT 982     G200     LEC     YES   8/15         53.3%  YES     Wu, Jianliang
+  CMPT 982     G300     LEC     YES   11/20        55.0%  YES     Vora, Keval
+  CMPT 983     G100     LEC     YES   10/16        62.5%  YES     Chen, Wuyang
+  CMPT 983     G200     LEC     YES   16/30        53.3%  YES     Li, Ke
+  CMPT 983     G300     LEC     YES   13/16        81.2%  YES     Schulte, Oliver
+  CMPT 984     G100     LEC     YES   11/15        73.3%  YES     Wang, Ke
+  CMPT 985     G100     LEC     YES   8/20         40.0%  YES     Yang, Xingdong
+
+  Section type breakdown:
+    IND          11 sections  (non-primary)
+    LEC         171 sections  (primary)
+    ONLINE        1 sections  (primary)
+
+  Enrollment data coverage (primary sections only):
+    Full (enrolled + capacity):  172
+    Capacity only (?/N):         0
+    No data (?/?):               0
+    Over-enrolled (stored raw):  4
+
+  Course matching:
+    Total rows:    183
+    Primary only:  172
+    Matched:       179
+    Unmatched:     4
+    (courses in Coursys but not in ml_courses — will be skipped)
+      CMPT 105W
+      CMPT 376W
+
+  Anomalies (15 total):
+    CMPT 496 D200: no instructor
+    CMPT 497 D100: no instructor
+    CMPT 498 D100: no instructor
+    CMPT 498 D200: no instructor
+    CMPT 498 D300: no instructor
+    CMPT 631 G100: no instructor
+    CMPT 895 G100: no instructor
+    CMPT 896 G100: no instructor
+    CMPT 896 G200: no instructor
+    CMPT 897 G100: no instructor
+    CMPT 897 G200: no instructor
+    CMPT 898 G100: no instructor
+    CMPT 898 G200: no instructor
+    CMPT 899 G100: no instructor
+    CMPT 899 G200: no instructor
+
+======================================================================
+  VERDICT: PASS

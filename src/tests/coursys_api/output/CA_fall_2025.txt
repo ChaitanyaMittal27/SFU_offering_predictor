@@ -1,0 +1,158 @@
+======================================================================
+  Test: CA_fall_2025
+  Mixed section types — G, E, OL
+  Dept: CA   Semester: 1257  (Fall 2025)
+  Run:  2026-05-03 15:15:55
+======================================================================
+
+  API returned 104 rows
+
+  COURSE       SEC      TYPE    PRI   RAW         FILL%  MATCH   INSTRUCTOR
+  ------------------------------------------------------------------------------------------
+  CA 110       D100     LEC     YES   15/24        62.5%  YES     Oleksijczuk, Denise
+  CA 117       D100     LEC     YES   54/70        77.1%  YES     Barenscott, Dorothy
+  CA 122       D100     LEC     YES   16/35        45.7%  YES     Bond, Nicole; Eist, Marla; Thompson, Daisy
+  CA 127       D100     LEC     YES   22/40        55.0%  YES     Thompson, Daisy
+  CA 129       D100     LEC     YES   19/30        63.3%  YES     Denham, Alison
+  CA 130       D100     LEC     YES   20/25        80.0%  YES     Rapisarda, Simone
+  CA 135       OL01     ONLINE  YES   524/600      87.3%  YES     Dickinson, Peter
+  CA 136       D100     LEC     YES   40/90        44.4%  YES     Pavsek, Christopher
+  CA 140       OL01     ONLINE  YES   60/70        85.7%  YES     Eigenfeldt, Arne
+  CA 142       OL01     ONLINE  YES   175/240      72.9%  YES     Eigenfeldt, Arne
+  CA 143       D100     LEC     YES   26/35        74.3%  YES     Bajakian, Aram
+  CA 145       D100     LEC     YES   20/24        83.3%  YES     Schroeder, Sabrina
+  CA 149       OL01     ONLINE  YES   664/700      94.9%  YES     Smulovitz, Stefan
+  CA 151       D100     LEC     YES   11/24        45.8%  YES     Latta, Erika; Long, James; Tacata, Ryan
+  CA 160       D100     LEC     YES   18/20        90.0%  YES     Pratt, Elspeth
+  CA 160       D200     LEC     YES   13/20        65.0%  YES     Boisjoly, Claude
+  CA 170       D100     LEC     YES   9/24         37.5%  YES     Woyno Rodriguez, Wladimiro
+  CA 175       D100     LEC     YES   20/24        83.3%  YES     Matreyek, Miwa
+  CA 186       E100     LEC     YES   88/108       81.5%  YES     Marks, Laura
+  CA 210W      D100     LEC     YES   35/50        70.0%  NO      Mellema, Tatiana
+  CA 220       D100     LEC     YES   22/24        91.7%  YES     Emnacen-Boyd, Sevrin; Martin, Lisa
+  CA 230       D100     LEC     YES   21/24        87.5%  YES     Shihab, Nadia
+  CA 233       D100     LEC     YES   21/24        87.5%  YES     Perez Anzures, Angelica
+  CA 235       D100     LEC     YES   32/35        91.4%  YES     Shihab, Nadia
+  CA 240       D100     LEC     YES   16/16       100.0%  YES     Pauly, Mauricio
+  CA 245       D100     LEC     YES   14/18        77.8%  YES     Pauly, Mauricio; Schroeder, Sabrina
+  CA 247       D100     LEC     YES   13/18        72.2%  YES     Horrigan, Matthew
+  CA 247       D200     LEC     YES   13/18        72.2%  YES     Horrigan, Matthew
+  CA 251       D100     LEC     YES   13/20        65.0%  YES     Long, James
+  CA 253       D100     LEC     YES   16/24        66.7%  YES     Latta, Erika
+  CA 254       D100     LEC     YES   15/24        62.5%  YES     Latta, Erika
+  CA 257W      D100     LEC     YES   25/40        62.5%  NO      Hite, Joshua
+  CA 260       D100     LEC     YES   19/24        79.2%  YES     Slade, Kathleen
+  CA 262       D100     LEC     YES   13/14        92.9%  YES     Wedman, Neil
+  CA 264       D100     LEC     YES   6/6         100.0%  YES     Pratt, Elspeth
+  CA 270       D100     LEC     YES   10/24        41.7%  YES     Woyno Rodriguez, Wladimiro
+  CA 275       D100     LEC     YES   14/16        87.5%  YES     Matreyek, Miwa
+  CA 285       D100     LEC     YES   35/40        87.5%  YES     Kitsos, Robert
+  CA 306       D100     LEC     YES   11/20        55.0%  YES     Higgins, Kay
+  CA 306       D200     LEC     YES   0/10          0.0%  YES     Higgins, Kay
+  CA 306       D300     LEC     YES   0/10          0.0%  YES     Higgins, Kay
+  CA 307       D100     LEC     YES   0/10          0.0%  YES     Higgins, Kay
+  CA 312W      D100     LEC     YES   43/43       100.0%  NO      Kong, Yani
+  CA 315       D100     LEC     YES   34/33       103.0%  YES     Priest, Eldritch
+  CA 320       D100     LEC     YES   11/21        52.4%  YES     Chambers, Justine; Fredriksson, Emmalena
+  CA 322       D100     LEC     YES   21/25        84.0%  YES     Eist, Marla
+  CA 324       D100     LEC     YES   13/20        65.0%  YES     Kitsos, Robert
+  CA 326       D100     LEC     YES   17/18        94.4%  YES     Eist, Marla
+  CA 327       D100     LEC     YES   19/22        86.4%  YES     Eist, Marla
+  CA 330       D100     LEC     YES   17/24        70.8%  YES     Rodriguez, Noe
+  CA 333       D100     LEC     YES   20/24        83.3%  YES     Rapisarda, Simone
+  CA 334       D100     LEC     YES   29/27       107.4%  YES     Chong, Christopher
+  CA 341       E100     LEC     YES   40/65        61.5%  YES     Sutrisno, Setya Hartana
+  CA 344       D100     LEC     YES   6/7          85.7%  YES     Priest, Eldritch
+  CA 345       D100     LEC     YES   11/12        91.7%  YES     Pauly, Mauricio; Schroeder, Sabrina
+  CA 354       D100     LEC     YES   13/24        54.2%  YES     Tacata, Ryan
+  CA 360       D100     LEC     YES   17/24        70.8%  YES     Bitter, Sabine
+  CA 362       D100     LEC     YES   8/9          88.9%  YES     Wedman, Neil
+  CA 364       D100     LEC     YES   13/18        72.2%  YES     Pratt, Elspeth
+  CA 366       D100     LEC     YES   17/24        70.8%  YES     Bitter, Sabine
+  CA 370       D100     LEC     YES   10/24        41.7%  YES     Woyno Rodriguez, Wladimiro
+  CA 378       D100     LEC     YES   21/60        35.0%  YES     Woyno Rodriguez, Wladimiro
+  CA 386       OL01     ONLINE  YES   285/300      95.0%  YES     Eigenfeldt, Arne
+  CA 400       D100     LEC     YES   2/10         20.0%  YES     
+  CA 400       D200     LEC     YES   11/10       110.0%  YES     
+  CA 400       D300     LEC     YES   6/10         60.0%  YES     
+  CA 400       D400     LEC     YES   0/10          0.0%  YES     
+  CA 400       D500     LEC     YES   0/10          0.0%  YES     
+  CA 400       D600     LEC     YES   0/2           0.0%  YES     
+  CA 401       D100     LEC     YES   0/5           0.0%  YES     
+  CA 401       D200     LEC     YES   0/10          0.0%  YES     
+  CA 401       D300     LEC     YES   0/10          0.0%  YES     
+  CA 401       D400     LEC     YES   0/10          0.0%  YES     
+  CA 401       D500     LEC     YES   0/5           0.0%  YES     
+  CA 401       D600     LEC     YES   0/5           0.0%  YES     
+  CA 406       D100     LEC     YES   9/20         45.0%  YES     Higgins, Kay
+  CA 406       D200     LEC     YES   0/10          0.0%  YES     Higgins, Kay
+  CA 407       D100     LEC     YES   0/5           0.0%  YES     Higgins, Kay
+  CA 420       D100     LEC     YES   18/20        90.0%  YES     Chambers, Justine; Fredriksson, Emmalena
+  CA 424       D100     LEC     YES   18/20        90.0%  YES     Chambers, Justine
+  CA 427       D100     LEC     YES   9/20         45.0%  YES     Eist, Marla
+  CA 430       D100     LEC     YES   16/24        66.7%  YES     Chong, Christopher
+  CA 440       D100     LEC     YES   11/10       110.0%  YES     Pauly, Mauricio
+  CA 445       D100     LEC     YES   9/18         50.0%  YES     Pauly, Mauricio; Schroeder, Sabrina
+  CA 450       D100     LEC     YES   15/20        75.0%  YES     Tacata, Ryan
+  CA 451       D100     LEC     YES   12/15        80.0%  YES     Long, James
+  CA 460       D100     LEC     YES   15/18        83.3%  YES     Boisjoly, Claude
+  CA 470       D100     LEC     YES   9/24         37.5%  YES     Woyno Rodriguez, Wladimiro
+  CA 811       G100     LEC     YES   9/10         90.0%  YES     Pavsek, Christopher
+  CA 812       G100     LEC     YES   9/10         90.0%  YES     Priest, Eldritch
+  CA 813       G100     LEC     YES   9/15         60.0%  YES     Rodriguez, Noe
+  CA 821       G100     LEC     YES   10/10       100.0%  YES     Pavsek, Christopher
+  CA 822       G100     LEC     YES   3/10         30.0%  YES     Priest, Eldritch
+  CA 824       G100     LEC     YES   13/15        86.7%  YES     Marks, Laura
+  CA 827       G100     LEC     YES   0/20          0.0%  YES     Higgins, Kay
+  CA 827       G200     LEC     YES   0/5           0.0%  YES     Higgins, Kay
+  CA 829       G100     LEC     YES   0/0             ?%  YES     
+  CA 830       G100     LEC     YES   0/24          0.0%  YES     Higgins, Kay
+  CA 889       G100     LEC     YES   5/20         25.0%  YES     
+  CA 890       G100     LEC     YES   17/25        68.0%  YES     Oleksijczuk, Denise
+  CA 892       G100     LEC     YES   10/15        66.7%  YES     
+  CA 895       G100     LEC     YES   1/15          6.7%  YES     
+  CA 898       G100     LEC     YES   15/20        75.0%  YES     
+  CA 899       G100     LEC     YES   3/15         20.0%  YES     
+
+  Section type breakdown:
+    LEC          99 sections  (primary)
+    ONLINE        5 sections  (primary)
+
+  Enrollment data coverage (primary sections only):
+    Full (enrolled + capacity):  104
+    Capacity only (?/N):         0
+    No data (?/?):               0
+    Over-enrolled (stored raw):  4
+
+  Course matching:
+    Total rows:    104
+    Primary only:  104
+    Matched:       101
+    Unmatched:     3
+    (courses in Coursys but not in ml_courses — will be skipped)
+      CA 210W
+      CA 257W
+      CA 312W
+
+  Anomalies (18 total):
+    CA 400 D100: no instructor
+    CA 400 D200: no instructor
+    CA 400 D300: no instructor
+    CA 400 D400: no instructor
+    CA 400 D500: no instructor
+    CA 400 D600: no instructor
+    CA 401 D100: no instructor
+    CA 401 D200: no instructor
+    CA 401 D300: no instructor
+    CA 401 D400: no instructor
+    CA 401 D500: no instructor
+    CA 401 D600: no instructor
+    CA 829 G100: zero capacity, no instructor
+    CA 889 G100: no instructor
+    CA 892 G100: no instructor
+    CA 895 G100: no instructor
+    CA 898 G100: no instructor
+    CA 899 G100: no instructor
+
+======================================================================
+  VERDICT: PASS

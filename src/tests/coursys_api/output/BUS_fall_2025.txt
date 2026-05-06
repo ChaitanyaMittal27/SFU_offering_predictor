@@ -1,0 +1,319 @@
+======================================================================
+  Test: BUS_fall_2025
+  Biggest dept — stress test
+  Dept: BUS   Semester: 1257  (Fall 2025)
+  Run:  2026-05-03 15:15:53
+======================================================================
+
+  API returned 261 rows
+
+  COURSE       SEC      TYPE    PRI   RAW         FILL%  MATCH   INSTRUCTOR
+  ------------------------------------------------------------------------------------------
+  BUS 200      D100     LEC     YES   124/141      87.9%  YES     Pflanz, James
+  BUS 201      D100     LEC     YES   237/240      98.8%  YES     Bykov, Ilia
+  BUS 201      D200     LEC     YES   99/120       82.5%  YES     Bykov, Ilia
+  BUS 201      D300     LEC     YES   243/244      99.6%  YES     Bykov, Ilia
+  BUS 202      D100     LEC     YES   234/241      97.1%  YES     Martell, Matt
+  BUS 203      D100     LEC     YES   184/196      93.9%  YES     Rivera, Joy Noel
+  BUS 203      E100     LEC     YES   311/313      99.4%  YES     Soloshchenko, Natalia
+  BUS 203      E200     LEC     YES   311/314      99.0%  YES     Soloshchenko, Natalia
+  BUS 207      D100     LEC     YES   164/168      97.6%  YES     Ruckman, Karen
+  BUS 207      D200     LEC     YES   59/150       39.3%  YES     Zhang, Peng
+  BUS 207      E100     LEC     YES   143/168      85.1%  YES     Azmat, Uzair
+  BUS 217W     D100     LEC     YES   96/96       100.0%  NO      Chow, Hong
+  BUS 217W     D200     LEC     YES   77/83        92.8%  NO      Bhatia, Manish
+  BUS 217W     D300     LEC     YES   96/96       100.0%  NO      Chow, Hong
+  BUS 217W     E100     LEC     YES   92/96        95.8%  NO      Bykov, Ilia
+  BUS 225      D100     LEC     YES   74/150       49.3%  YES     Tonsaker, Shauna
+  BUS 225      D200     LEC     YES   5/150         3.3%  YES     Tonsaker, Shauna
+  BUS 225      I100     IND     no    6/150         4.0%  YES     Tonsaker, Shauna
+  BUS 232      D100     LEC     YES   247/250      98.8%  YES     Nair, Devadrita
+  BUS 232      D200     LEC     YES   146/150      97.3%  YES     Nair, Devadrita
+  BUS 232      E100     LEC     YES   100/250      40.0%  YES     Yamamoto, Cleusa
+  BUS 233      D100     LEC     YES   49/75        65.3%  YES     Pflanz, James
+  BUS 237      D100     LEC     YES   184/192      95.8%  YES     Liu, Connie
+  BUS 237      D200     LEC     YES   89/96        92.7%  YES     Bisher, Ahmad
+  BUS 237      E100     LEC     YES   85/98        86.7%  YES     Liu, Connie
+  BUS 238      D100     LEC     YES   51/75        68.0%  YES     Somani, Amyn
+  BUS 240      D100     LEC     YES   167/168      99.4%  YES     Lukkarinen, Anna
+  BUS 240      D200     LEC     YES   147/150      98.0%  YES     Terzic, VJ
+  BUS 251      D100     LEC     YES   186/192      96.9%  YES     Bubra, Susan
+  BUS 251      D200     LEC     YES   90/96        93.8%  YES     Zhang, Ray
+  BUS 251      E100     LEC     YES   162/169      95.9%  YES     Zhang, Ray
+  BUS 254      D100     LEC     YES   165/168      98.2%  YES     Tan, Hwee Cheng
+  BUS 254      D200     LEC     YES   71/73        97.3%  YES     Bubra, Susan
+  BUS 254      E100     LEC     YES   114/122      93.4%  YES     Tan, Hwee Cheng
+  BUS 272      D100     LEC     YES   167/168      99.4%  YES     Zatzick, Chris
+  BUS 272      D200     LEC     YES   71/80        88.8%  YES     Assadi, Bahareh
+  BUS 272      E100     LEC     YES   166/168      98.8%  YES     Zatzick, Chris
+  BUS 275      D100     LEC     YES   161/168      95.8%  YES     Williams, Kent
+  BUS 275      D200     LEC     YES   94/96        97.9%  YES     Williams, Kent
+  BUS 300      E100     LEC     YES   326/344      94.8%  YES     Soloshchenko, Natalia
+  BUS 303      D100     LEC     YES   87/90        96.7%  YES     Shivhare, Neha
+  BUS 303      D200     LEC     YES   69/75        92.0%  YES     Burke, Kathleen
+  BUS 303      D300     LEC     YES   84/90        93.3%  YES     Culham, Tom
+  BUS 303      D400     LEC     YES   74/75        98.7%  YES     Burke, Kathleen
+  BUS 307      D100     LEC     YES   41/60        68.3%  YES     Ruckman, Karen
+  BUS 311      D100     LEC     YES   44/58        75.9%  YES     Gibson, Steve
+  BUS 312      D100     LEC     YES   162/168      96.4%  YES     Caracciolo, Gherardo Gennaro
+  BUS 312      D200     LEC     YES   119/145      82.1%  YES     Caracciolo, Gherardo Gennaro
+  BUS 312      E100     LEC     YES   136/192      70.8%  YES     Caracciolo, Gherardo Gennaro
+  BUS 313      E100     LEC     YES   71/75        94.7%  YES     Vincenti, Michele
+  BUS 315      D100     LEC     YES   70/75        93.3%  YES     Fesechko, Greta
+  BUS 315      E100     LEC     YES   71/75        94.7%  YES     Fesechko, Greta
+  BUS 318      D100     LEC     YES   12/20        60.0%  YES     Willeboordse, Frederick
+  BUS 320      D100     LEC     YES   71/75        94.7%  YES     Chung, Dennis
+  BUS 320      E100     LEC     YES   49/75        65.3%  YES     Chung, Dennis
+  BUS 321      D100     LEC     YES   75/75       100.0%  YES     Sandhawalia, Robin
+  BUS 321      D200     LEC     YES   74/75        98.7%  YES     Sandhawalia, Robin
+  BUS 322      D100     LEC     YES   73/75        97.3%  YES     Zhang, Ray
+  BUS 325      D100     LEC     YES   70/150       46.7%  YES     Tonsaker, Shauna
+  BUS 325      D200     LEC     YES   3/150         2.0%  YES     Tonsaker, Shauna
+  BUS 325      I100     IND     no    1/150         0.7%  YES     Tonsaker, Shauna
+  BUS 326      D100     LEC     YES   41/150       27.3%  YES     Tonsaker, Shauna
+  BUS 326      D200     LEC     YES   5/150         3.3%  YES     Tonsaker, Shauna
+  BUS 326      I100     IND     no    0/150         0.0%  YES     Tonsaker, Shauna
+  BUS 327      D100     LEC     YES   13/150        8.7%  YES     Tonsaker, Shauna
+  BUS 327      D200     LEC     YES   0/150         0.0%  YES     Tonsaker, Shauna
+  BUS 327      I100     IND     no    0/150         0.0%  YES     Tonsaker, Shauna
+  BUS 330      D100     LEC     YES   74/75        98.7%  YES     Liu, Weiming
+  BUS 331      D100     LEC     YES   55/75        73.3%  YES     Liu, Weiming
+  BUS 336      D100     LEC     YES   108/175      61.7%  YES     Maghraby, Heba
+  BUS 338      D100     LEC     YES   24/60        40.0%  YES     Somani, Amyn
+  BUS 340      D100     LEC     YES   43/58        74.1%  YES     Martell, Matt
+  BUS 341      D100     LEC     YES   42/58        72.4%  YES     Gomez Borquez, Claudia
+  BUS 343      D100     LEC     YES   193/198      97.5%  YES     Lin, Lily
+  BUS 343      D200     LEC     YES   88/90        97.8%  YES     Lin, Lily
+  BUS 345      D100     LEC     YES   13/60        21.7%  YES     Yang, Yupin
+  BUS 345      D200     LEC     YES   54/60        90.0%  YES     Torkzad, Amirhossein
+  BUS 346      D100     LEC     YES   66/75        88.0%  YES     Fardghassemi, Sepand
+  BUS 346      D200     LEC     YES   58/75        77.3%  YES     Zamani, Ardeshir
+  BUS 347      D100     LEC     YES   29/50        58.0%  YES     Kates, Steve
+  BUS 347      D200     LEC     YES   25/50        50.0%  YES     Kates, Steve
+  BUS 360W     D100     LEC     YES   35/35       100.0%  NO      Barlow, Leanne
+  BUS 360W     D200     LEC     YES   35/35       100.0%  NO      Venhuizen, Christian
+  BUS 360W     D300     LEC     YES   35/35       100.0%  NO      Barlow, Leanne
+  BUS 360W     D400     LEC     YES   34/35        97.1%  NO      Venhuizen, Christian
+  BUS 360W     D500     LEC     YES   35/35       100.0%  NO      Francis, Darren
+  BUS 360W     E100     LEC     YES   34/35        97.1%  NO      Stewart, Kevin
+  BUS 360W     E200     LEC     YES   34/35        97.1%  NO      Francis, Darren
+  BUS 360W     E300     LEC     YES   33/35        94.3%  NO      Stewart, Kevin
+  BUS 360W     E400     LEC     YES   33/34        97.1%  NO      Stewart, Kevin
+  BUS 361      D100     LEC     YES   58/60        96.7%  YES     de Visser, Jennifer
+  BUS 361      D200     LEC     YES   46/60        76.7%  YES     de Visser, Jennifer
+  BUS 362      D100     LEC     YES   20/20       100.0%  YES     Maghraby, Heba
+  BUS 362      E100     LEC     YES   45/60        75.0%  YES     Nasr, Eman
+  BUS 371      D100     LEC     YES   29/60        48.3%  YES     Chan, Anthony
+  BUS 373      D100     LEC     YES   154/168      91.7%  YES     Nair, Devadrita
+  BUS 373      D200     LEC     YES   100/120      83.3%  YES     Gohram, Gohram
+  BUS 374      D100     LEC     YES   117/144      81.2%  YES     Kozhikode, Rajiv
+  BUS 381      D100     LEC     YES   128/144      88.9%  YES     Lyubykh, Zhanna
+  BUS 381      E100     LEC     YES   103/144      71.5%  YES     Assadi, Bahareh
+  BUS 393      D100     LEC     YES   93/96        96.9%  YES     Bhalloo, Shafik
+  BUS 393      D200     LEC     YES   66/96        68.8%  YES     Pflanz, James
+  BUS 393      D300     LEC     YES   94/96        97.9%  YES     Bhalloo, Shafik
+  BUS 393      E100     LEC     YES   91/96        94.8%  YES     Bhalloo, Shafik
+  BUS 401      D100     LEC     YES   40/49        81.6%  YES     Martell, Matt
+  BUS 410      D100     LEC     YES   38/39        97.4%  YES     Niu, Jijun
+  BUS 410      E100     LEC     YES   34/40        85.0%  YES     Niu, Jijun
+  BUS 411      D100     LEC     YES   29/38        76.3%  YES     Poitras, Geoffrey
+  BUS 413      D100     LEC     YES   42/74        56.8%  YES     Vedrashko, Alexander
+  BUS 413      E100     LEC     YES   49/75        65.3%  YES     Vedrashko, Alexander
+  BUS 414      D100     LEC     YES   39/40        97.5%  YES     Pavlov, Andrey
+  BUS 417      D100     LEC     YES   30/39        76.9%  YES     Poitras, Geoffrey
+  BUS 418      D100     LEC     YES   18/40        45.0%  YES     Anginer, Deniz
+  BUS 418      E100     LEC     YES   27/40        67.5%  YES     Anginer, Deniz
+  BUS 419      D100     LEC     YES   14/40        35.0%  YES     Pavlov, Andrey
+  BUS 420      D100     LEC     YES   37/40        92.5%  YES     Mahmoudian, Fereshteh
+  BUS 420      E100     LEC     YES   32/40        80.0%  YES     Mahmoudian, Fereshteh
+  BUS 421      D100     LEC     YES   35/40        87.5%  YES     Hrazdil, Karel
+  BUS 421      E100     LEC     YES   34/40        85.0%  YES     Hrazdil, Karel
+  BUS 424      D100     LEC     YES   30/40        75.0%  YES     Jermias, Johnny
+  BUS 424      E100     LEC     YES   30/40        75.0%  YES     Jermias, Johnny
+  BUS 425      D100     LEC     YES   3/150         2.0%  YES     Tonsaker, Shauna
+  BUS 425      D200     LEC     YES   2/150         1.3%  YES     Tonsaker, Shauna
+  BUS 425      I100     IND     no    0/150         0.0%  YES     Tonsaker, Shauna
+  BUS 426      D100     LEC     YES   37/40        92.5%  YES     Mowbray, Grant
+  BUS 426      E100     LEC     YES   40/40       100.0%  YES     Mowbray, Grant
+  BUS 431      D100     LEC     YES   38/35       108.6%  YES     Parvathy, Neethu
+  BUS 432      D100     LEC     YES   38/45        84.4%  YES     Parvathy, Neethu
+  BUS 434      D100     LEC     YES   31/35        88.6%  YES     Taira, Yuri
+  BUS 435      D100     LEC     YES   35/35       100.0%  YES     Parvathy, Neethu
+  BUS 437      D100     LEC     YES   30/35        85.7%  YES     Zhang, George
+  BUS 439      D100     LEC     YES   26/26       100.0%  YES     Ho, Jason
+  BUS 441      D100     LEC     YES   17/32        53.1%  YES     Flory, James
+  BUS 443      D100     LEC     YES   32/35        91.4%  YES     Rayner, Samantha
+  BUS 445      D100     LEC     YES   35/32       109.4%  YES     Soleymanian, Miremad
+  BUS 445      D200     LEC     YES   31/32        96.9%  YES     Soleymanian, Miremad
+  BUS 446      D100     LEC     YES   25/35        71.4%  YES     Yang, Yupin
+  BUS 447      D100     LEC     YES   30/35        85.7%  YES     Ladha, Zahra
+  BUS 448      D100     LEC     YES   15/35        42.9%  YES     Rayner, Samantha
+  BUS 449      D100     LEC     YES   35/35       100.0%  YES     McMullan, Kylie
+  BUS 453      D100     LEC     YES   7/35         20.0%  YES     Graves, Sara
+  BUS 462      D100     LEC     YES   17/32        53.1%  YES     Brydon, Michael
+  BUS 462      E100     LEC     YES   14/32        43.8%  YES     Brydon, Michael
+  BUS 464      D100     LEC     YES   31/35        88.6%  YES     Amintabar, Amir
+  BUS 464      E100     LEC     YES   24/35        68.6%  YES     Abouelnaga, Mohamed
+  BUS 466      D100     LEC     YES   33/35        94.3%  YES     Krystalowich, Kyle
+  BUS 468      E100     LEC     YES   37/38        97.4%  YES     Wong, Richard
+  BUS 471      D100     LEC     YES   17/35        48.6%  YES     Blettner, Daniela
+  BUS 473      D100     LEC     YES   29/35        82.9%  YES     Imanpoor Yourdshahy, Mona
+  BUS 473      D200     LEC     YES   23/35        65.7%  YES     Imanpoor Yourdshahy, Mona
+  BUS 477      D100     LEC     YES   12/34        35.3%  YES     Harries, Andrew S.G.
+  BUS 478      D100     LEC     YES   38/40        95.0%  YES     Gedajlovic, Eric
+  BUS 478      D200     LEC     YES   28/39        71.8%  YES     Chan, Anthony
+  BUS 478      D300     LEC     YES   35/40        87.5%  YES     Bukszar, Edward
+  BUS 478      D400     LEC     YES   36/40        90.0%  YES     Basto da Silva, Rui Jorge
+  BUS 478      D500     LEC     YES   34/40        85.0%  YES     Taira, Yuri
+  BUS 478      D600     LEC     YES   40/40       100.0%  YES     Wei, Yifan
+  BUS 478      D700     LEC     YES   33/35        94.3%  YES     Bukszar, Edward
+  BUS 478      E100     LEC     YES   13/39        33.3%  YES     Gedajlovic, Eric
+  BUS 481      D100     LEC     YES   25/35        71.4%  YES     Zhao, Natalie
+  BUS 482      D100     LEC     YES   30/35        85.7%  YES     Zhao, Natalie
+  BUS 483      D100     LEC     YES   27/35        77.1%  YES     Bhalloo, Shafik
+  BUS 484      D100     LEC     YES   22/35        62.9%  YES     Weston, Robert
+  BUS 485      D100     LEC     YES   19/35        54.3%  YES     Lyubykh, Zhanna
+  BUS 486      D100     LEC     YES   32/35        91.4%  YES     Hannah, David
+  BUS 496      E100     LEC     YES   64/300       21.3%  YES     Bykov, Ilia
+  BUS 498      D100     LEC     YES   2/2         100.0%  YES     Blettner, Daniela
+  BUS 510      G300     LEC     YES   25/50        50.0%  YES     Paulez, Marc
+  BUS 552      G200     LEC     YES   30/40        75.0%  YES     Moore, Mark
+  BUS 579      G100     LEC     YES   32/60        53.3%  YES     
+  BUS 579      G200     LEC     YES   24/60        40.0%  YES     
+  BUS 579      G300     LEC     YES   0/0             ?%  YES     
+  BUS 579      G400     LEC     YES   0/0             ?%  YES     
+  BUS 600      G400     LEC     YES   48/50        96.0%  YES     
+  BUS 605      G100     LEC     YES   12/45        26.7%  YES     McCarthy, Ian
+  BUS 607      G100     LEC     YES   32/45        71.1%  YES     von Nordenflycht, Andrew
+  BUS 607      G200     LEC     YES   13/45        28.9%  YES     von Nordenflycht, Andrew
+  BUS 608      G400     LEC     YES   49/60        81.7%  YES     McKinnon, Alexia
+  BUS 610      G100     LEC     YES   1/0             ?%  YES     Maine, Elicia
+  BUS 619      G500     LEC     YES   15/55        27.3%  YES     MacEachern, Scott
+  BUS 620      G500     LEC     YES   6/60         10.0%  YES     Davis, Connie
+  BUS 622      G400     LEC     YES   48/60        80.0%  YES     Dove, Karen
+  BUS 626      G400     LEC     YES   48/60        80.0%  YES     MacEachern, Scott
+  BUS 641      G100     LEC     YES   32/45        71.1%  YES     Lazarova, Mila
+  BUS 641      G200     LEC     YES   13/45        28.9%  YES     Lazarova, Mila
+  BUS 642      G100     LEC     YES   33/45        73.3%  YES     Li, Jing
+  BUS 649      G100     LEC     YES   35/45        77.8%  YES     Bertels, Stephanie
+  BUS 657      G400     LEC     YES   43/60        71.7%  YES     Francis, June
+  BUS 660      G100     LEC     YES   12/20        60.0%  YES     
+  BUS 661      G100     LEC     YES   12/20        60.0%  YES     
+  BUS 662      G100     LEC     YES   45/45       100.0%  YES     Hotte, Darrin
+  BUS 670      G100     LEC     YES   35/45        77.8%  YES     Garabedian, Arsineh
+  BUS 679      G400     LEC     YES   42/60        70.0%  YES     Werker, Eric
+  BUS 681      G100     LEC     YES   35/45        77.8%  YES     McCrae, Melissa
+  BUS 692      G400     LEC     YES   42/60        70.0%  YES     Phung, Kam
+  BUS 694      G100     LEC     YES   35/60        58.3%  YES     Yip, Jeffrey
+  BUS 700      G100     LEC     YES   54/100       54.0%  YES     
+  BUS 700      G300     LEC     YES   115/125      92.0%  YES     
+  BUS 700      G400     LEC     YES   24/100       24.0%  YES     
+  BUS 702      G500     LEC     YES   29/80        36.2%  YES     Philipp-Muller, Aviva
+  BUS 703      G100     LEC     YES   48/60        80.0%  YES     Moore, Mark
+  BUS 703      G300     LEC     YES   52/80        65.0%  YES     Zhang, Peng
+  BUS 704      G100     LEC     YES   54/70        77.1%  YES     McCannell, Lesley
+  BUS 704      G200     LEC     YES   34/60        56.7%  YES     McCannell, Lesley
+  BUS 704      G300     LEC     YES   79/80        98.8%  YES     McMullen, Marla
+  BUS 704      G600     LEC     YES   27/40        67.5%  YES     Bushe, Gervase
+  BUS 705      G100     LEC     YES   44/60        73.3%  YES     Yang, Xiaojia
+  BUS 705      G200     LEC     YES   16/60        26.7%  YES     Garabedian, Arsineh
+  BUS 705      G300     LEC     YES   32/80        40.0%  YES     MacEachern, Scott
+  BUS 705      G500     LEC     YES   43/80        53.8%  YES     Garabedian, Arsineh
+  BUS 706      G100     LEC     YES   47/60        78.3%  YES     Krishnamoorthy, Srinivas
+  BUS 706      G200     LEC     YES   24/60        40.0%  YES     Krishnamoorthy, Srinivas
+  BUS 706      G500     LEC     YES   48/80        60.0%  YES     Johnson, Michael
+  BUS 708      G500     LEC     YES   33/80        41.2%  YES     Azmat, Uzair
+  BUS 708      G600     LEC     YES   14/40        35.0%  YES     Vadilyev, Alexander
+  BUS 710      G100     LEC     YES   54/70        77.1%  YES     Tung, Rosalie
+  BUS 710      G300     LEC     YES   78/80        97.5%  YES     Kozhikode, Rajiv
+  BUS 715      G500     LEC     YES   24/80        30.0%  YES     Jula, Payman
+  BUS 715      G600     LEC     YES   22/40        55.0%  YES     Krishnamoorthy, Srinivas
+  BUS 716      G100     LEC     YES   54/70        77.1%  YES     Williams, Kent
+  BUS 716      G500     LEC     YES   29/80        36.2%  YES     Graves, Sara
+  BUS 719      G100     LEC     YES   43/60        71.7%  YES     Ten Brummelhuis, Lieke
+  BUS 719      G500     LEC     YES   61/80        76.2%  YES     McCrae, Melissa
+  BUS 720      G300     LEC     YES   65/80        81.2%  YES     Kozhikode, Rajiv
+  BUS 727      G100     LEC     YES   41/60        68.3%  YES     
+  BUS 727      G500     LEC     YES   37/60        61.7%  YES     
+  BUS 736      G100     LEC     YES   38/60        63.3%  YES     Martell, Matt
+  BUS 738      G300     LEC     YES   70/80        87.5%  YES     Jula, Payman
+  BUS 739      G300     LEC     YES   65/80        81.2%  YES     Church, Mike
+  BUS 741      G200     LEC     YES   20/60        33.3%  YES     Walter, Adam
+  BUS 754      G100     LEC     YES   38/60        63.3%  YES     Dasgupta, Srabana
+  BUS 757      G100     LEC     YES   49/60        81.7%  YES     Hotte, Darrin
+  BUS 764      G100     LEC     YES   37/60        61.7%  YES     Hasan, M. Emrul
+  BUS 774      G100     LEC     YES   38/40        95.0%  YES     McCrae, Melissa
+  BUS 790      G100     LEC     YES   14/35        40.0%  YES     
+  BUS 791      G100     LEC     YES   14/35        40.0%  YES     
+  BUS 800      G100     LEC     YES   24/60        40.0%  YES     Goddard, Philip
+  BUS 802      G100     LEC     YES   24/60        40.0%  YES     Song, Victor
+  BUS 806      G100     LEC     YES   24/60        40.0%  YES     Rubin, Amir
+  BUS 816      G100     LEC     YES   28/40        70.0%  YES     Klein, Peter
+  BUS 826      G100     LEC     YES   28/40        70.0%  YES     Duan, Ying
+  BUS 827      G100     LEC     YES   24/60        40.0%  YES     Duan, Ying
+  BUS 828      G100     LEC     YES   32/40        80.0%  YES     Lanoix, Eric
+  BUS 830      G100     LEC     YES   0/0             ?%  YES     Saraf, Nilesh
+  BUS 831      G100     LEC     YES   0/50          0.0%  YES     
+  BUS 839      G100     LEC     YES   20/40        50.0%  YES     Nazari, Jamal
+  BUS 845      G100     LEC     YES   10/60        16.7%  YES     Nazari, Jamal
+  BUS 876      G300     LEC     YES   28/40        70.0%  YES     Rubin, Amir
+  BUS 880      G100     LEC     YES   23/60        38.3%  YES     Willeboordse, Frederick
+  BUS 881      G100     LEC     YES   24/60        40.0%  YES     Willeboordse, Frederick
+  BUS 891      G100     LEC     YES   5/20         25.0%  YES     Vadilyev, Alexander
+  BUS 967      G100     LEC     YES   6/10         60.0%  YES     Anginer, Deniz
+  BUS 968      G100     LEC     YES   7/10         70.0%  YES     Kim, Jeong Bon
+  BUS 980      G100     LEC     YES   3/10         30.0%  YES     Blettner, Daniela
+  BUS 982      G100     LEC     YES   3/10         30.0%  YES     McFerran, Brent
+  BUS 983      G100     LEC     YES   2/10         20.0%  YES     
+  BUS 984      G100     LEC     YES   3/10         30.0%  YES     
+  BUS 985      G100     LEC     YES   2/10         20.0%  YES     
+  BUS 990      G100     LEC     YES   4/10         40.0%  YES     
+  BUS 992      G100     LEC     YES   2/15         13.3%  YES     
+  BUS 993      G100     LEC     YES   5/15         33.3%  YES     
+
+  Section type breakdown:
+    IND           5 sections  (non-primary)
+    LEC         256 sections  (primary)
+
+  Enrollment data coverage (primary sections only):
+    Full (enrolled + capacity):  256
+    Capacity only (?/N):         0
+    No data (?/?):               0
+    Over-enrolled (stored raw):  2
+
+  Course matching:
+    Total rows:    261
+    Primary only:  256
+    Matched:       248
+    Unmatched:     13
+    (courses in Coursys but not in ml_courses — will be skipped)
+      BUS 217W
+      BUS 360W
+
+  Anomalies (23 total):
+    BUS 579 G100: no instructor
+    BUS 579 G200: no instructor
+    BUS 579 G300: zero capacity, no instructor
+    BUS 579 G400: zero capacity, no instructor
+    BUS 600 G400: no instructor
+    BUS 610 G100: zero capacity
+    BUS 660 G100: no instructor
+    BUS 661 G100: no instructor
+    BUS 700 G100: no instructor
+    BUS 700 G300: no instructor
+    BUS 700 G400: no instructor
+    BUS 727 G100: no instructor
+    BUS 727 G500: no instructor
+    BUS 790 G100: no instructor
+    BUS 791 G100: no instructor
+    BUS 830 G100: zero capacity
+    BUS 831 G100: no instructor
+    BUS 983 G100: no instructor
+    BUS 984 G100: no instructor
+    BUS 985 G100: no instructor
+    BUS 990 G100: no instructor
+    BUS 992 G100: no instructor
+    BUS 993 G100: no instructor
+
+======================================================================
+  VERDICT: PASS

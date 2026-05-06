@@ -1,0 +1,26 @@
+======================================================================
+  COURSYS API — FINAL VALIDATION SUMMARY
+  Run: 2026-05-03 15:15:55
+======================================================================
+
+  TEST CASE                 STATUS   ROWS   PRIMARY  UNMATCHED  FULL ENR  CAP ONLY  NO DATA  OVER
+  -----------------------------------------------------------------------------------------------
+  CMPT_fall_2025            PASS     183    172      4          172       0         0        4
+  CMPT_summer_2025          PASS     135    123      2          109       0         14       1
+  CMPT_fall_2020            PASS     144    132      18         131       0         1        3
+  MATH_fall_2025            PASS     78     70       2          70        0         0        0
+  BUS_fall_2025             PASS     261    256      13         256       0         0        2
+  CA_fall_2025              PASS     104    104      3          104       0         0        4
+
+  Pagination check:
+  OK — all tests returned >10 rows
+
+  Enrollment note:
+  - FULL rows:     enrolled + capacity stored, fill_rate computed
+  - CAP ONLY rows: capacity stored, enrolled=NULL, fill_rate=NULL
+  - NO DATA rows:  both NULL — thesis/directed study registrations
+  - OVER rows:     stored as-is. Real signal — do not cap or filter.
+
+  Overall verdict:
+  ALL PASS — ready to write 02_collect_offerings.py
+======================================================================

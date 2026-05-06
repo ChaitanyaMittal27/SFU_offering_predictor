@@ -1,0 +1,188 @@
+  SFU ML Database Verification
+  Run: 2026-05-03 22:26:36
+  DB:  data/raw/sfu_ml.db
+
+============================================================
+  1. TABLE ROW COUNTS
+============================================================
+  [PASS] ml_terms: 18
+  [PASS] ml_courses: 3310
+  [PASS] ml_section_offerings: 50581
+
+============================================================
+  2. ml_terms — all 18 semesters present
+============================================================
+  [PASS] Total terms: 18
+  [PASS] COVID-affected terms: 6
+
+  Year   Term     Code   COVID
+  ------------------------------
+  2020   spring   1201   YES
+  2020   summer   1204   YES
+  2020   fall     1207   YES
+  2021   spring   1211   YES
+  2021   summer   1214   YES
+  2021   fall     1217   YES
+  2022   spring   1221   
+  2022   summer   1224   
+  2022   fall     1227   
+  2023   spring   1231   
+  2023   summer   1234   
+  2023   fall     1237   
+  2024   spring   1241   
+  2024   summer   1244   
+  2024   fall     1247   
+  2025   spring   1251   
+  2025   summer   1254   
+  2025   fall     1257   
+
+============================================================
+  3. ml_courses — dept and level breakdown
+============================================================
+  [PASS] Total courses: 3310
+  [PASS] Distinct departments: 76
+  [INFO] Courses with NULL course_level (non-numeric codes): 0
+
+  Top 10 departments by course count:
+    BUS        268 courses
+    CA         175 courses
+    EDUC       169 courses
+    CMPT       131 courses
+    PSYC       110 courses
+    HSCI       108 courses
+    HIST       101 courses
+    MATH       94 courses
+    ENSC       92 courses
+    MSE        88 courses
+
+  Course level breakdown:
+    100-level    245 courses
+    200-level    379 courses
+    300-level    748 courses
+    400-level    793 courses
+    500-level    40 courses
+    600-level    166 courses
+    700-level    167 courses
+    800-level    658 courses
+    900-level    114 courses
+
+============================================================
+  4. ml_section_offerings — row counts per term
+============================================================
+  [PASS] Total rows: 50581
+
+  Year   Term       Rows  Avg/dept  COVID
+  ----------------------------------------
+  2020   spring     3093  110% of avg  [COVID]
+  2020   summer     2186  78% of avg  [COVID]
+  2020   fall       3077  109% of avg  [COVID]
+  2021   spring     3144  112% of avg  [COVID]
+  2021   summer     2293  82% of avg  [COVID]
+  2021   fall       3136  112% of avg  [COVID]
+  2022   spring     3102  110% of avg  
+  2022   summer     2276  81% of avg  
+  2022   fall       3097  110% of avg  
+  2023   spring     3105  110% of avg  
+  2023   summer     2273  81% of avg  
+  2023   fall       3144  112% of avg  
+  2024   spring     3089  110% of avg  
+  2024   summer     2177  77% of avg  
+  2024   fall       3109  111% of avg  
+  2025   spring     3109  111% of avg  
+  2025   summer     2186  78% of avg  
+  2025   fall       2985  106% of avg  
+
+============================================================
+  5. MATCHED vs UNMATCHED COURSES
+============================================================
+  [INFO] Matched rows (ml_course_id set): 45974
+  [INFO] Unmatched rows (ml_course_id NULL): 4607
+  [INFO] Match rate: 90.9%
+
+  Top unmatched courses (in Coursys, not in ml_courses):
+    CMNS 481        appeared in 100 terms
+    CMNS 482        appeared in 100 terms
+    CMNS 483        appeared in 99 terms
+    STAT 261        appeared in 48 terms
+    GEOG 302        appeared in 45 terms
+    GEOG 303        appeared in 45 terms
+    GEOG 402        appeared in 45 terms
+    GEOG 403        appeared in 45 terms
+    GEOG 409        appeared in 45 terms
+    REM 690        appeared in 45 terms
+    REM 691        appeared in 44 terms
+    EVSC 380        appeared in 42 terms
+    EVSC 381        appeared in 42 terms
+    EVSC 480        appeared in 42 terms
+    EVSC 481        appeared in 42 terms
+    EVSC 482        appeared in 42 terms
+    ARCH 350        appeared in 36 terms
+    ARCH 351        appeared in 35 terms
+    ARCH 450        appeared in 34 terms
+    ARCH 451        appeared in 34 terms
+
+============================================================
+  6. ENROLLMENT DATA QUALITY
+============================================================
+  Full data (N/N):           50581  (100.0%)
+  Capacity only (?/N):           0  (0.0%)
+  No data (?/?):                 0  (0.0%)
+  Zero enrolled + capacity:    470  (0.9%) — placeholder/thesis
+  Has waitlist (+N):           323  (0.6%)
+  Over-enrolled:              1066  (2.1%)
+
+============================================================
+  7. SECTION CODE DIVERSITY
+============================================================
+  Unique section code prefixes (first character):
+    Dxxx    25963 rows
+    Gxxx    16532 rows
+    Ixxx     2193 rows
+    Exxx     1823 rows
+    Axxx     1227 rows
+    Oxxx      996 rows
+    Cxxx      631 rows
+    Bxxx      575 rows
+    Lxxx      372 rows
+    Fxxx      156 rows
+    Jxxx       84 rows
+    Pxxx       27 rows
+    Zxxx        1 rows
+    Hxxx        1 rows
+
+  Most common section codes:
+    D100        16847 rows
+    G100         9059 rows
+    D200         4195 rows
+    G200         3490 rows
+    I100         2127 rows
+    E100         1618 rows
+    D300         1082 rows
+    G300          935 rows
+    OL01          915 rows
+    D400          647 rows
+    G001          580 rows
+    G400          519 rows
+    B100          518 rows
+    C100          453 rows
+    D900          365 rows
+
+============================================================
+  8. SPOT CHECKS — known courses
+============================================================
+  CMPT 120: found in 18/18 terms  enrolled 45-350  capacity 148-400
+  CMPT 276: found in 18/18 terms  enrolled 34-120  capacity 90-120
+  MATH 150: found in 18/18 terms  enrolled 22-336  capacity 50-350
+  BUS 201: found in 6/18 terms  enrolled 92-243  capacity 102-244
+
+============================================================
+  9. INSTRUCTOR COVERAGE
+============================================================
+  Has instructor:     36933  (73.0%)
+  Missing instructor: 13648  (27.0%)
+
+============================================================
+  10. OVERALL VERDICT
+============================================================
+  ALL CHECKS PASSED — data stage complete
+  Safe to proceed to EDA (notebooks/01_eda.ipynb)

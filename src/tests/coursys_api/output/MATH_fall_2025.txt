@@ -1,0 +1,121 @@
+======================================================================
+  Test: MATH_fall_2025
+  Second dept — parsing sanity check
+  Dept: MATH   Semester: 1257  (Fall 2025)
+  Run:  2026-05-03 15:15:52
+======================================================================
+
+  API returned 78 rows
+
+  COURSE       SEC      TYPE    PRI   RAW         FILL%  MATCH   INSTRUCTOR
+  ------------------------------------------------------------------------------------------
+  MATH 100     D100     LEC     YES   125/192      65.1%  YES     Gray, Justin
+  MATH 100     D400     LEC     YES   47/60        78.3%  YES     Rutherford, Alexander
+  MATH 110     D100     LEC     YES   138/139      99.3%  YES     Archibald, Tom
+  MATH 150     D100     LEC     YES   140/160      87.5%  YES     Bruin, Nils
+  MATH 150     D200     LEC     YES   126/150      84.0%  YES     Tan, Sheena Miao Ying
+  MATH 150     D400     LEC     YES   88/95        92.6%  YES     Singh, Vijaykumar
+  MATH 151     D100     LEC     YES   222/260      85.4%  YES     Bruin, Nils
+  MATH 151     D200     LEC     YES   160/170      94.1%  YES     Tan, Sheena Miao Ying
+  MATH 151     D400     LEC     YES   125/220      56.8%  YES     Singh, Vijaykumar
+  MATH 152     D100     LEC     YES   305/318      95.9%  YES     Monagan, Michael
+  MATH 154     D100     LEC     YES   474/500      94.8%  YES     Stacho, Ladislav
+  MATH 154     D400     LEC     YES   133/150      88.7%  YES     Chan, Justin
+  MATH 157     D100     LEC     YES   426/435      97.9%  YES     Chen, Imin
+  MATH 157     D400     LEC     YES   82/150       54.7%  YES     de Silva, Nadish
+  MATH 190     B100     BLD     no    58/60        96.7%  YES     Burrill, Sophie
+  MATH 190     OL02     ONLINE  YES   37/40        92.5%  YES     Niezen, Joanna
+  MATH 232     D100     LEC     YES   159/400      39.8%  YES     Albayrak, Seda
+  MATH 232     D400     LEC     YES   101/101     100.0%  YES     Chan, Justin
+  MATH 232     OP01     ONLINE  YES   0/0             ?%  YES     
+  MATH 240     D100     LEC     YES   68/110       61.8%  YES     Iranmanesh, Ali
+  MATH 240     OP01     ONLINE  YES   0/0             ?%  YES     
+  MATH 251     D100     LEC     YES   236/250      94.4%  YES     Williams, JF
+  MATH 251     D200     LEC     YES   12/32        37.5%  YES     Nigam, Nilima
+  MATH 251     D400     LEC     YES   60/90        66.7%  YES     Mojallal, Seyed Ahmad
+  MATH 260     D100     LEC     YES   124/152      81.6%  YES     Ruuth, Steven
+  MATH 292     D100     LEC     YES   16/21        76.2%  YES     Niezen, Joanna
+  MATH 301     E100     LEC     YES   51/66        77.3%  YES     Fetecau, Razvan
+  MATH 308     D100     LEC     YES   102/115      88.7%  YES     Stacho, Ladislav
+  MATH 309     D100     LEC     YES   34/40        85.0%  YES     Wittenberg, Ralf
+  MATH 322     D100     LEC     YES   54/54       100.0%  YES     Burrill, Sophie
+  MATH 336     D100     LEC     YES   1/20          5.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 336     D200     LEC     YES   1/20          5.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 336     I100     IND     no    0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 337     D100     LEC     YES   0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 337     D200     LEC     YES   0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 337     I100     IND     no    0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 340     D100     LEC     YES   88/115       76.5%  YES     Bruin, Nils
+  MATH 345     D100     LEC     YES   30/40        75.0%  YES     Mohar, Bojan
+  MATH 360     D200     LEC     YES   20/40        50.0%  YES     Ashby, Ben
+  MATH 418     D100     LEC     YES   17/40        42.5%  YES     Wittenberg, Ralf
+  MATH 425     D100     LEC     YES   7/20         35.0%  YES     Nigam, Nilima
+  MATH 436     D100     LEC     YES   0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 436     D200     LEC     YES   0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 436     I100     IND     no    0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 437     D100     LEC     YES   1/20          5.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 437     D200     LEC     YES   0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 437     I100     IND     no    0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 480W    D100     LEC     YES   10/15        66.7%  NO      Rattan, Amarpreet
+  MATH 486     D100     LEC     YES   0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 486     D200     LEC     YES   0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 486     I100     IND     no    0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 498     D100     LEC     YES   7/10         70.0%  YES     Stockdale, Jessica
+  MATH 499W    D100     LEC     YES   7/10         70.0%  NO      Stockdale, Jessica
+  MATH 709     G100     LEC     YES   0/5           0.0%  YES     Tupper, Paul
+  MATH 718     G100     LEC     YES   0/5           0.0%  YES     Wittenberg, Ralf
+  MATH 725     G100     LEC     YES   1/10         10.0%  YES     Nigam, Nilima
+  MATH 742     G100     LEC     YES   4/30         13.3%  YES     Lisonek, Petr
+  MATH 817     G100     LEC     YES   12/15        80.0%  YES     Ilten-Gee, Nathan
+  MATH 820     G100     LEC     YES   10/15        66.7%  YES     DeVos, Matthew
+  MATH 877     G100     LEC     YES   0/5           0.0%  YES     
+  MATH 879     G100     LEC     YES   2/6          33.3%  YES     Stacho, Ladislav
+  MATH 879     G200     LEC     YES   0/5           0.0%  YES     Stacho, Ladislav
+  MATH 880     G100     LEC     YES   1/3          33.3%  YES     Stacho, Ladislav
+  MATH 880     G200     LEC     YES   0/3           0.0%  YES     
+  MATH 890     G100     LEC     YES   0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 890     G200     LEC     YES   0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 890     I100     IND     no    0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 891     G100     LEC     YES   0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 891     G200     LEC     YES   0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 891     I100     IND     no    0/20          0.0%  YES     Bussard, Natalia; Hamid, Hadar
+  MATH 894     G100     LEC     YES   0/6           0.0%  YES     
+  MATH 895     G100     LEC     YES   0/6           0.0%  YES     
+  MATH 898     G100     LEC     YES   11/35        31.4%  YES     Stacho, Ladislav
+  MATH 898     G200     LEC     YES   1/50          2.0%  YES     Stacho, Ladislav
+  MATH 898     G300     LEC     YES   0/5           0.0%  YES     Stacho, Ladislav
+  MATH 899     G100     LEC     YES   26/35        74.3%  YES     Stacho, Ladislav
+  MATH 899     G200     LEC     YES   2/50          4.0%  YES     Stacho, Ladislav
+  MATH 899     G300     LEC     YES   0/5           0.0%  YES     Stacho, Ladislav
+
+  Section type breakdown:
+    BLD           1 sections  (non-primary)
+    IND           7 sections  (non-primary)
+    LEC          67 sections  (primary)
+    ONLINE        3 sections  (primary)
+
+  Enrollment data coverage (primary sections only):
+    Full (enrolled + capacity):  70
+    Capacity only (?/N):         0
+    No data (?/?):               0
+    Over-enrolled (stored raw):  0
+
+  Course matching:
+    Total rows:    78
+    Primary only:  70
+    Matched:       76
+    Unmatched:     2
+    (courses in Coursys but not in ml_courses — will be skipped)
+      MATH 480W
+      MATH 499W
+
+  Anomalies (6 total):
+    MATH 232 OP01: zero capacity, no instructor
+    MATH 240 OP01: zero capacity, no instructor
+    MATH 877 G100: no instructor
+    MATH 880 G200: no instructor
+    MATH 894 G100: no instructor
+    MATH 895 G100: no instructor
+
+======================================================================
+  VERDICT: PASS

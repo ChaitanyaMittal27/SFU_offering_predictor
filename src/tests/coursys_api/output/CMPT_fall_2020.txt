@@ -1,0 +1,210 @@
+======================================================================
+  Test: CMPT_fall_2020
+  COVID term — confirms historical data
+  Dept: CMPT   Semester: 1207  (Fall 2020)
+  Run:  2026-05-03 15:15:50
+======================================================================
+
+  API returned 144 rows
+
+  COURSE       SEC      TYPE    PRI   RAW         FILL%  MATCH   INSTRUCTOR
+  ------------------------------------------------------------------------------------------
+  CMPT 105W    D100     LEC     YES   98/100       98.0%  NO      Nelsen, Jacqueline
+  CMPT 105W    D200     LEC     YES   100/100     100.0%  NO      Nelsen, Jacqueline
+  CMPT 120     D100     LEC     YES   194/200      97.0%  YES     Cukierman, Diana; Donaldson, Toby
+  CMPT 120     D200     LEC     YES   193/200      96.5%  YES     Donaldson, Toby; Lim, Angelica
+  CMPT 120     D300     LEC     YES   132/200      66.0%  YES     Donaldson, Toby; Khangura, Harinder
+  CMPT 120     D500     LEC     YES   168/200      84.0%  YES     Cheung, Victor; Donaldson, Toby
+  CMPT 125     D100     LEC     YES   184/200      92.0%  YES     Shinkar, Igor
+  CMPT 127     D100     LEC     YES   64/66        97.0%  NO      Cheung, Victor
+  CMPT 127     D200     LEC     YES   66/67        98.5%  NO      Cheung, Victor
+  CMPT 127     D300     LEC     YES   67/67       100.0%  NO      Cheung, Victor
+  CMPT 128     D100     LEC     YES   143/150      95.3%  NO      Cameron, Rob
+  CMPT 130     D100     LEC     YES   86/150       57.3%  YES     Edgar, John
+  CMPT 130     D200     LEC     YES   102/150      68.0%  YES     Fraser, Brian
+  CMPT 213     D100     LEC     YES   102/120      85.0%  YES     Chan, Bobby
+  CMPT 225     D100     LEC     YES   157/200      78.5%  YES     Mitchell, David
+  CMPT 225     D200     LEC     YES   143/200      71.5%  YES     Shermer, Thomas
+  CMPT 275     E100     LEC     YES   66/100       66.0%  NO      Shirmohammadi, Shervin
+  CMPT 276     D100     LEC     YES   96/100       96.0%  YES     Fraser, Brian
+  CMPT 276     D200     LEC     YES   100/100     100.0%  YES     Thomas, Jack
+  CMPT 276     E100     LEC     YES   66/100       66.0%  YES     Tsang, Herbert
+  CMPT 295     E100     LEC     YES   192/200      96.0%  YES     Shriraman, Arrvindh
+  CMPT 300     D100     LEC     YES   195/200      97.5%  NO      Khangura, Harinder
+  CMPT 307     D100     LEC     YES   184/200      92.0%  YES     Shermer, Thomas
+  CMPT 308     D100     LEC     YES   54/75        72.0%  YES     Kabanets, Valentine
+  CMPT 310     D100     LEC     YES   146/150      97.3%  YES     Imran, Hazra
+  CMPT 318     D100     LEC     YES   87/150       58.0%  YES     Glaesser, Uwe
+  CMPT 320     D100     LEC     YES   115/150      76.7%  NO      Pearce, Steve
+  CMPT 353     D100     LEC     YES   144/150      96.0%  YES     Baker, Greg
+  CMPT 354     D100     LEC     YES   199/200      99.5%  YES     Edgar, John
+  CMPT 361     D100     LEC     YES   107/150      71.3%  YES     Aksoy, Yagiz; Zhang, Richard
+  CMPT 363     D100     LEC     YES   95/100       95.0%  YES     Chilana, Parmit Kaur
+  CMPT 363     D200     LEC     YES   97/100       97.0%  YES     Hibbitts, Paul
+  CMPT 371     D100     LEC     YES   115/150      76.7%  YES     Baghban Karimi, Ouldooz
+  CMPT 373     D100     LEC     YES   47/100       47.0%  YES     Sumner, Nick
+  CMPT 376W    D100     LEC     YES   99/100       99.0%  NO      Tofiloski, Milan
+  CMPT 376W    D200     LEC     YES   100/100     100.0%  NO      Tofiloski, Milan
+  CMPT 379     D100     LEC     YES   63/150       42.0%  YES     Sarkar, Anoop
+  CMPT 383     D100     LEC     YES   145/150      96.7%  YES     Baker, Greg
+  CMPT 405     D100     LEC     YES   21/40        52.5%  YES     Gu, Qianping
+  CMPT 409     D200     LEC     YES   15/40        37.5%  YES     Shinkar, Igor
+  CMPT 412     D100     LEC     YES   106/120      88.3%  YES     Furukawa, Yasutaka
+  CMPT 413     D100     LEC     YES   71/120       59.2%  YES     Chang, Angel
+  CMPT 415     D100     LEC     YES   5/4         125.0%  YES     Fraser, Brian
+  CMPT 415     D300     LEC     YES   1/1         100.0%  YES     Wang, Jiannan
+  CMPT 415     D400     LEC     YES   1/1         100.0%  YES     Chang, Angel
+  CMPT 415     D500     LEC     YES   1/1         100.0%  YES     Chen, Mo
+  CMPT 415     D600     LEC     YES   2/2         100.0%  YES     Ester, Martin
+  CMPT 415     D700     LEC     YES   3/3         100.0%  YES     Pearce, Steve
+  CMPT 415     D800     LEC     YES   1/1         100.0%  YES     Hamarneh, Ghassan
+  CMPT 415     D900     LEC     YES   1/1         100.0%  YES     Schulte, Oliver
+  CMPT 416     D100     LEC     YES   1/1         100.0%  YES     Fraser, Brian
+  CMPT 416     D200     LEC     YES   1/1         100.0%  YES     Li, Ke
+  CMPT 416     D300     LEC     YES   1/1         100.0%  YES     Ester, Martin
+  CMPT 417     D100     LEC     YES   72/120       60.0%  YES     Mitchell, David
+  CMPT 426     D100     LEC     YES   57/60        95.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 426     D200     LEC     YES   6/15         40.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 426     D300     LEC     YES   5/15         33.3%  YES     Behrisch, Tanya; Chicoine, Harriet; Danson, Shannon
+  CMPT 426     D400     LEC     YES   1/15          6.7%  YES     Behrisch, Tanya; Chicoine, Harriet; Danson, Shannon
+  CMPT 426     I100     IND     no    1/15          6.7%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 427     D100     LEC     YES   27/60        45.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 427     D200     LEC     YES   2/15         13.3%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 427     D300     LEC     YES   3/15         20.0%  YES     Behrisch, Tanya; Chicoine, Harriet; Danson, Shannon
+  CMPT 427     D400     LEC     YES   0/15          0.0%  YES     Behrisch, Tanya; Chicoine, Harriet; Danson, Shannon
+  CMPT 427     I100     IND     no    0/15          0.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 428     D100     LEC     YES   36/60        60.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 428     D200     LEC     YES   2/15         13.3%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 428     D300     LEC     YES   5/15         33.3%  YES     Behrisch, Tanya; Chicoine, Harriet; Danson, Shannon
+  CMPT 428     D400     LEC     YES   1/15          6.7%  YES     Behrisch, Tanya; Chicoine, Harriet; Danson, Shannon; Hefeeda, Mohamed
+  CMPT 428     I100     IND     no    0/15          0.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 429     D100     LEC     YES   20/15       133.3%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 429     D200     LEC     YES   2/15         13.3%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 429     D300     LEC     YES   2/15         13.3%  YES     Behrisch, Tanya; Chicoine, Harriet; Danson, Shannon
+  CMPT 429     D400     LEC     YES   0/15          0.0%  YES     Behrisch, Tanya; Chicoine, Harriet; Danson, Shannon
+  CMPT 429     I100     IND     no    0/15          0.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 430     D100     LEC     YES   7/15         46.7%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 430     D200     LEC     YES   0/15          0.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 430     D300     LEC     YES   0/15          0.0%  YES     Behrisch, Tanya; Chicoine, Harriet; Danson, Shannon
+  CMPT 430     D400     LEC     YES   0/15          0.0%  YES     Behrisch, Tanya; Chicoine, Harriet; Danson, Shannon
+  CMPT 430     I100     IND     no    0/15          0.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 431     D100     LEC     YES   31/120       25.8%  YES     Vora, Keval
+  CMPT 441     D100     LEC     YES   37/60        61.7%  YES     Wiese, Kay C
+  CMPT 454     D100     LEC     YES   66/120       55.0%  YES     Wang, Tianzheng
+  CMPT 459     D100     LEC     YES   97/120       80.8%  YES     Ester, Martin
+  CMPT 470     D100     LEC     YES   100/100     100.0%  NO      Chan, Bobby
+  CMPT 471     D100     LEC     YES   55/120       45.8%  YES     Diab, Khaled
+  CMPT 473     D100     LEC     YES   74/100       74.0%  YES     Sumner, Nick
+  CMPT 474     D100     LEC     YES   49/100       49.0%  NO      Baghban Karimi, Ouldooz
+  CMPT 475     E100     LEC     YES   83/100       83.0%  YES     Ridinger, Dan
+  CMPT 477     E100     LEC     YES   16/100       16.0%  YES     Ternovska, Evgenia (Eugenia)
+  CMPT 479     E200     LEC     YES   5/40         12.5%  YES     Vora, Keval
+  CMPT 494     D100     LEC     YES   1/5          20.0%  YES     Vora, Keval
+  CMPT 494     D200     LEC     YES   4/5          80.0%  YES     Wang, Jiannan
+  CMPT 494     D300     LEC     YES   1/5          20.0%  YES     Baghban Karimi, Ouldooz
+  CMPT 626     G100     LEC     YES   0/15          0.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 626     G200     LEC     YES   0/15          0.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 626     G300     LEC     YES   12/15        80.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 626     G400     LEC     YES   2/15         13.3%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 626     G500     LEC     YES   5/15         33.3%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 626     G600     LEC     YES   0/15          0.0%  YES     
+  CMPT 626     I100     IND     no    6/15         40.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 626     I200     IND     no    0/15          0.0%  YES     
+  CMPT 626     I300     IND     no    0/15          0.0%  YES     
+  CMPT 627     G100     LEC     YES   1/15          6.7%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 627     G200     LEC     YES   0/15          0.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 627     G300     LEC     YES   34/15       226.7%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 627     G400     LEC     YES   8/15         53.3%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 627     G500     LEC     YES   7/15         46.7%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 627     G600     LEC     YES   3/15         20.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 627     I100     IND     no    0/15          0.0%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 627     I200     IND     no    0/15          0.0%  YES     
+  CMPT 627     I300     IND     no    0/15          0.0%  YES     
+  CMPT 628     G100     LEC     YES   0/0             ?%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 628     G200     LEC     YES   0/0             ?%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 628     G300     LEC     YES   0/0             ?%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 628     G400     LEC     YES   0/0             ?%  YES     Behrisch, Tanya
+  CMPT 628     I100     IND     no    0/0             ?%  YES     Behrisch, Tanya; Danson, Shannon
+  CMPT 629     G100     LEC     YES   0/25          0.0%  YES     
+  CMPT 631     G100     LEC     YES   2/0             ?%  YES     
+  CMPT 705     G100     LEC     YES   51/60        85.0%  YES     Gu, Qianping
+  CMPT 711     G100     LEC     YES   6/20         30.0%  YES     Wiese, Kay C
+  CMPT 726     G100     LEC     YES   104/200      52.0%  YES     Chen, Mo
+  CMPT 732     G100     LEC     YES   34/110 (+1)      ?%  YES     Baker, Greg; Bergner, Steven
+  CMPT 740     G100     LEC     YES   23/75        30.7%  NO      Wang, Tianzheng
+  CMPT 741     G100     LEC     YES   50/65        76.9%  YES     Wang, Ke
+  CMPT 742     G100     LEC     YES   13/35        37.1%  YES     Mahdavi-Amiri, Ali
+  CMPT 756     G100     LEC     YES   23/50        46.0%  YES     Chow, George; Chow, Kai Yee (George)
+  CMPT 757     G100     LEC     YES   19/50        38.0%  NO      Savva, Manolis
+  CMPT 767     G100     LEC     YES   30/50        60.0%  YES     Carpendale, Sheelagh
+  CMPT 770     G100     LEC     YES   17/60        28.3%  NO      Vora, Keval
+  CMPT 771     G100     LEC     YES   16/50        32.0%  YES     Liu, Jiangchuan
+  CMPT 782     G100     LEC     YES   13/30        43.3%  YES     Tayebi, Mohammad
+  CMPT 789     G100     LEC     YES   18/50        36.0%  YES     Bulatov, Andrei
+  CMPT 815     G100     LEC     YES   6/25         24.0%  NO      Shinkar, Igor
+  CMPT 825     G100     LEC     YES   30/50        60.0%  NO      Chang, Angel
+  CMPT 827     G100     LEC     YES   4/25         16.0%  YES     Mitchell, David
+  CMPT 894     G100     LEC     YES   1/3          33.3%  YES     Chen, Mo
+  CMPT 894     G200     LEC     YES   1/3          33.3%  YES     Ester, Martin
+  CMPT 894     G300     LEC     YES   1/3          33.3%  YES     Ternovska, Evgenia (Eugenia)
+  CMPT 895     G100     LEC     YES   0/5           0.0%  YES     
+  CMPT 896     G100     LEC     YES   1/10         10.0%  YES     
+  CMPT 897     G100     LEC     YES   1/5          20.0%  YES     
+  CMPT 898     G100     LEC     YES   87/120       72.5%  YES     
+  CMPT 899     G100     LEC     YES   119/120      99.2%  YES     
+  CMPT 899     G200     LEC     YES   4/5          80.0%  YES     
+
+  Section type breakdown:
+    IND          12 sections  (non-primary)
+    LEC         132 sections  (primary)
+
+  Enrollment data coverage (primary sections only):
+    Full (enrolled + capacity):  131
+    Capacity only (?/N):         0
+    No data (?/?):               1
+    Over-enrolled (stored raw):  3
+
+  Course matching:
+    Total rows:    144
+    Primary only:  132
+    Matched:       126
+    Unmatched:     18
+    (courses in Coursys but not in ml_courses — will be skipped)
+      CMPT 105W
+      CMPT 127
+      CMPT 128
+      CMPT 275
+      CMPT 300
+      CMPT 320
+      CMPT 376W
+      CMPT 470
+      CMPT 474
+      CMPT 740
+      CMPT 757
+      CMPT 770
+      CMPT 815
+      CMPT 825
+
+  Anomalies (19 total):
+    CMPT 626 G600: no instructor
+    CMPT 626 I200: no instructor
+    CMPT 626 I300: no instructor
+    CMPT 627 I200: no instructor
+    CMPT 627 I300: no instructor
+    CMPT 628 G100: zero capacity
+    CMPT 628 G200: zero capacity
+    CMPT 628 G300: zero capacity
+    CMPT 628 G400: zero capacity
+    CMPT 628 I100: zero capacity
+    CMPT 629 G100: no instructor
+    CMPT 631 G100: zero capacity, no instructor
+    CMPT 732 G100: no enrollment data (?/?)
+    CMPT 895 G100: no instructor
+    CMPT 896 G100: no instructor
+    CMPT 897 G100: no instructor
+    CMPT 898 G100: no instructor
+    CMPT 899 G100: no instructor
+    CMPT 899 G200: no instructor
+
+======================================================================
+  VERDICT: PASS
