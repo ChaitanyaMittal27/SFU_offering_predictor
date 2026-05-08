@@ -12,10 +12,10 @@ import sqlite3
 from contextlib import contextmanager
 from paths import DATA_PROCESSED
 
+
 # ---------------------------------------------------------------------------
 # DB helper
 # ---------------------------------------------------------------------------
-
 @contextmanager
 def _clean_db():
     conn = sqlite3.connect(DATA_PROCESSED / "sfu_clean.db")
@@ -29,36 +29,29 @@ def _clean_db():
 # ---------------------------------------------------------------------------
 # Individual context functions
 # ---------------------------------------------------------------------------
-
 def get_valid_semesters() -> list[str]:
-    """
-    Valid semester strings the controller accepts.
-    Hardcoded — these never change.
-    """
+    """Valid semester strings the controller accepts. Hardcoded — never change."""
     return ["spring", "summer", "fall"]
 
 
 def get_valid_year_range() -> dict:
     """
-    Min year is one ahead of the last collected term.
+    Min year is one ahead of the last year in the DB.
     Max year is a reasonable planning horizon.
     """
     with _clean_db() as conn:
         row = conn.execute("SELECT MAX(year) AS last_year FROM offerings").fetchone()
 
-    last_year = row["last_year"] if row and row["last_year"] else 2025
+    last_year = row["last_year"] if row and row["last_year"] else 2026
 
     return {
-        "min": last_year + 1,
+        "min": last_year,
         "max": last_year + 10,
     }
 
 
 def get_valid_depts() -> list[str]:
-    """
-    All distinct department codes that appear in the offerings table.
-    Sorted alphabetically.
-    """
+    """All distinct department codes in offerings. Sorted alphabetically."""
     with _clean_db() as conn:
         rows = conn.execute(
             "SELECT DISTINCT dept_code FROM offerings ORDER BY dept_code"
@@ -69,10 +62,8 @@ def get_valid_depts() -> list[str]:
 
 def get_valid_course_pairs() -> list[dict]:
     """
-    All distinct (dept, course_num, title) combinations in the offerings table.
+    All distinct (dept, course_num, title) combinations.
     Title included so Gemini can match on course name e.g. "Data Structures".
-    If no title exists for a course, title is an empty string.
-    Each entry is unique by (dept, course_num).
     """
     with _clean_db() as conn:
         rows = conn.execute(
@@ -82,7 +73,7 @@ def get_valid_course_pairs() -> list[dict]:
                 course_number,
                 MAX(title) AS title
             FROM offerings
-            WHERE dept_code    IS NOT NULL
+            WHERE dept_code     IS NOT NULL
               AND course_number IS NOT NULL
             GROUP BY dept_code, course_number
             ORDER BY dept_code, course_number
@@ -100,10 +91,7 @@ def get_valid_course_pairs() -> list[dict]:
 
 
 def get_semester_examples() -> list[dict]:
-    """
-    Concrete examples of how semester + year map to real terms.
-    Helps Gemini understand the expected format.
-    """
+    """Concrete examples of semester + year → term. Helps Gemini understand the format."""
     with _clean_db() as conn:
         rows = conn.execute(
             """
@@ -127,23 +115,10 @@ def get_semester_examples() -> list[dict]:
 # ---------------------------------------------------------------------------
 # Master function
 # ---------------------------------------------------------------------------
-
 def get_all_context() -> dict:
     """
     Returns a single JSON-ready dict with all valid context.
     Called once at app startup by the controller.
-
-    Structure:
-    {
-        "semesters":        ["spring", "summer", "fall"],
-        "year_range":       {"min": 2026, "max": 2035},
-        "depts":            ["BUS", "CA", "CMPT", ...],
-        "course_pairs":     [{"dept": "CMPT", "course_num": "225"}, ...],
-        "course_examples":  [{"dept": "CMPT", "course_num": "225",
-                              "title": "Data Structures"}, ...],
-        "semester_examples":[{"year": 2025, "semester": "fall",
-                              "order": 3}, ...],
-    }
     """
     return {
         "semesters":         get_valid_semesters(),

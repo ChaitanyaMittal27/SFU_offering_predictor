@@ -4,12 +4,12 @@ src/controller.py  —  Controller Layer
 Single public function: predict(dept, course_num, semester, year)
 
 Flow:
-    1. build_features() via lookup  — validates inputs, hits DB
+    1. build_features() via lookup  — validates inputs, hits DB, builds features
     2. predict_*()      via model   — runs the three pkl models
     3. package result               — clean dict, always same shape
 
 The result dict shape is always identical whether ok or error.
-Callers check result["status"] and read from there.
+Callers check result["status"] first.
 """
 
 import lookup
@@ -20,14 +20,12 @@ from context import get_all_context
 # ---------------------------------------------------------------------------
 # Thresholds
 # ---------------------------------------------------------------------------
-
-_UNLIKELY_THRESHOLD = 0.30   # below this → is_unlikely = True
+_UNLIKELY_THRESHOLD = 0.30   # offered_prob below this → is_unlikely = True
 
 
 # ---------------------------------------------------------------------------
 # Internal helpers
 # ---------------------------------------------------------------------------
-
 def _ok(dept, course_num, semester, year,
         offered_prob, capacity, enrollment,
         is_cold_start, is_unlikely) -> dict:
@@ -65,7 +63,6 @@ def _error(dept, course_num, semester, year, message: str) -> dict:
 # ---------------------------------------------------------------------------
 # Public API
 # ---------------------------------------------------------------------------
-
 def predict(dept: str, course_num: str, semester: str, year: int) -> dict:
     """
     Run all three models for the given course + semester + year.
@@ -81,54 +78,42 @@ def predict(dept: str, course_num: str, semester: str, year: int) -> dict:
     -------
     dict — always the same shape, check result["status"] first.
 
-    Ok:
+    Ok result:
         {
             "status":        "ok",
             "dept":          "CMPT",
             "course_num":    "225",
             "semester":      "fall",
             "year":          2027,
-            "offered_prob":  0.91,
-            "capacity":      88,
-            "enrollment":    74,
+            "offered_prob":  0.9329,
+            "capacity":      399,
+            "enrollment":    307,
             "is_cold_start": False,
             "is_unlikely":   False,
             "error":         None,
         }
 
-    Error:
+    Error result:
         {
             "status":        "error",
             "dept":          "CMPT",
             "course_num":    "999",
-            "semester":      "fall",
-            "year":          2027,
-            "offered_prob":  None,
-            "capacity":      None,
-            "enrollment":    None,
-            "is_cold_start": None,
-            "is_unlikely":   None,
+            ...all prediction fields None...
             "error":         "Course not found: CMPT 999",
         }
     """
     try:
-        # ------------------------------------------------------------------
-        # 1. Get data + validate (lookup raises ValueError on any problem)
-        # ------------------------------------------------------------------
+        # 1. Build features (validates inputs, queries DB)
         features = lookup.build_features(dept, course_num, semester, year)
 
-        # ------------------------------------------------------------------
         # 2. Run the three models
-        # ------------------------------------------------------------------
         offered_prob = model.predict_offered(features)
         capacity     = model.predict_capacity(features)
         enrollment   = model.predict_enrollment(features)
 
-        # ------------------------------------------------------------------
         # 3. Derive flags
-        # ------------------------------------------------------------------
-        is_cold_start = features["hist_n_offerings"] == 0
-        is_unlikely   = offered_prob < _UNLIKELY_THRESHOLD
+        is_cold_start = (features["hist_n_offerings"] == 0)
+        is_unlikely   = (offered_prob < _UNLIKELY_THRESHOLD)
 
         return _ok(
             dept, course_num, semester, year,

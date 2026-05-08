@@ -2,7 +2,7 @@
 src/tests/test_controller/test_controller.py  —  Tests for the Controller Layer
 
 Run from project root:
-    python -m pytest src/tests/test_controller/test_controller.py -v
+    pytest src/tests/test_controller/test_controller.py -v
 
 Output files written to the same folder as this test file (TEST_OUT).
 """
@@ -12,13 +12,10 @@ import json
 import pytest
 from pathlib import Path
 
-# ---------------------------------------------------------------------------
-# Paths
-# ---------------------------------------------------------------------------
-_SRC = Path(__file__).parent.parent.parent   # src/tests/test_controller → src/
+_SRC = Path(__file__).parent.parent.parent   # test_controller/ → tests/ → src/
 sys.path.insert(0, str(_SRC))
 
-from controller import predict, get_context   # noqa: E402
+from controller import predict, get_context
 
 TEST_OUT = Path(__file__).parent
 
@@ -26,14 +23,12 @@ TEST_OUT = Path(__file__).parent
 # ---------------------------------------------------------------------------
 # Helpers
 # ---------------------------------------------------------------------------
-
 def save(filename: str, data: dict):
-    """Write result dict as formatted JSON to TEST_OUT folder."""
     (TEST_OUT / filename).write_text(json.dumps(data, indent=2))
 
 
 # ---------------------------------------------------------------------------
-# Test 1 — SCHEMA: ok result always has all keys
+# Test 1 — SCHEMA: result always has all keys
 # ---------------------------------------------------------------------------
 def test_ok_schema():
     result = predict("CMPT", "225", "fall", 2027)
@@ -89,7 +84,7 @@ def test_unknown_dept_returns_error():
 
 
 # ---------------------------------------------------------------------------
-# Test 3 — NORMALISATION: case and format variations all resolve correctly
+# Test 3 — NORMALISATION: case variations all resolve correctly
 # ---------------------------------------------------------------------------
 def test_lowercase_dept_and_semester():
     result = predict("cmpt", "225", "fall", 2027)
@@ -107,7 +102,6 @@ def test_lowercase_course_num():
     """360w should resolve same as 360W."""
     lower = predict("CMPT", "360w", "fall", 2027)
     upper = predict("CMPT", "360W", "fall", 2027)
-    # both should have same status (either both ok or both error)
     assert lower["status"] == upper["status"]
 
 
@@ -159,21 +153,21 @@ def test_enrollment_positive():
 # Test 6 — FLAGS
 # ---------------------------------------------------------------------------
 def test_is_unlikely_false_for_consistent_course():
-    """CMPT 225 runs every term — should not be unlikely."""
+    """CMPT 225 runs every term — offered_prob should be well above 0.30."""
     result = predict("CMPT", "225", "fall", 2027)
     assert result["status"] == "ok"
     assert result["is_unlikely"] is False
 
 
 def test_is_cold_start_false_for_known_course():
-    """CMPT 225 has years of history — should not be cold start."""
+    """CMPT 225 has years of history — hist_n_offerings > 0."""
     result = predict("CMPT", "225", "fall", 2027)
     assert result["status"] == "ok"
     assert result["is_cold_start"] is False
 
 
 # ---------------------------------------------------------------------------
-# Test 7 — FUTURE TERM: prediction works for terms not yet in DB
+# Test 7 — FUTURE TERM: predictions work for terms not yet in DB
 # ---------------------------------------------------------------------------
 def test_future_term_ok():
     result = predict("CMPT", "225", "spring", 2030)
@@ -182,7 +176,7 @@ def test_future_term_ok():
 
 
 def test_past_term_in_db_ok():
-    """Terms that exist in the DB should also work fine."""
+    """Terms that exist in the DB should also work (uses prior data only)."""
     result = predict("CMPT", "225", "fall", 2023)
     assert result["status"] == "ok"
 
@@ -220,20 +214,20 @@ def test_context_course_pairs_have_required_keys():
 
 
 # ---------------------------------------------------------------------------
-# Test 9 — SMOKE: save full results to TEST_OUT for inspection
+# Test 9 — SMOKE: save full results for inspection
 # ---------------------------------------------------------------------------
 def test_smoke_save_results():
     """
-    Runs predict() on a handful of real cases and saves results to
-    TEST_OUT so you can inspect actual prediction values after a run.
+    Runs predict() on a handful of real cases and saves results to TEST_OUT
+    so you can inspect actual prediction values after a run.
     """
     cases = [
         ("CMPT", "225",  "fall",   2027),
-        ("CMPT", "120",  "spring", 2026),
-        ("MATH", "151",  "fall",   2026),
+        ("CMPT", "120",  "spring", 2027),
+        ("MATH", "151",  "fall",   2027),
         ("CMPT", "225",  "summer", 2030),   # far future
-        ("CMPT", "999",  "fall",   2027),   # error case
-        ("CMPT", "225",  "autumn", 2027),   # bad semester
+        ("CMPT", "999",  "fall",   2027),   # error — unknown course
+        ("CMPT", "225",  "autumn", 2027),   # error — bad semester
     ]
 
     all_results = {}
@@ -243,7 +237,6 @@ def test_smoke_save_results():
 
     save("smoke_results.json", all_results)
 
-    # At least the known good cases should be ok
     assert all_results["CMPT_225_fall_2027"]["status"]   == "ok"
     assert all_results["CMPT_225_autumn_2027"]["status"] == "error"
     assert all_results["CMPT_999_fall_2027"]["status"]   == "error"

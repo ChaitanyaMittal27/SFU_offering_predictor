@@ -7,60 +7,44 @@ the complete feature dict that model.py expects.
 Entry point:
     build_features(dept, course_num, semester, year) -> dict
 
-Four internal helpers, one per feature group:
-    _get_course_features()     — static per-course fields
-    _get_term_features()       — term fields (or synthesized for future terms)
-    _get_historical_features() — aggregated past offering stats
-    _get_delivery_features()   — campus/modality flags from past sections
+All historical features are computed using only offerings PRIOR to the
+target term — the same no-leakage guarantee used during training.
 
 DB usage:
-    sfu_clean.db  — primary source (offerings table, fully denormalized)
-    sfu_ml.db     — only for prereq_count, has_coreqs, units, designation
-                    (not present in clean DB)
+    sfu_clean.db  — single source: offerings table contains all needed fields
+                    (dept_code, course_level, degree_level, units, prereq_count
+                     were joined in during cleaning)
+
+Encoders:
+    le_dept_code.pkl, le_degree_level.pkl — loaded from data/processed/
 """
 
-import statistics
 import sqlite3
+import numpy as np
+import joblib
 from contextlib import contextmanager
-from paths import DATA_RAW, DATA_PROCESSED
+from paths import DATA_PROCESSED
 
 # ---------------------------------------------------------------------------
 # Constants
 # ---------------------------------------------------------------------------
-
-VALID_SEMESTERS = {"spring", "summer", "fall"}
-
+VALID_SEMESTERS   = {"spring", "summer", "fall"}
 SEMESTER_TO_ORDER = {"spring": 1, "summer": 2, "fall": 3}
+HIGH_FILL_THRESHOLD = 0.9
+COLD_START_TERMS_SINCE = 19   # sentinel for "never offered before"
 
-# Last known term in the DB — update if you collect more terms
-_LAST_TERM_ID    = 18     # 2025 Fall
-_LAST_TERM_YEAR  = 2025
-_LAST_TERM_ORDER = 3      # Fall
-
-# Primary section prefixes (established during feature engineering)
-_PRIMARY_PREFIXES = ("D", "E", "O", "C", "J", "G", "N")
-_PRIMARY_FILTER   = " OR ".join(
-    f"section_code LIKE '{p}%'" for p in _PRIMARY_PREFIXES
-)
-
-# Campus string → feature flag name
-_CAMPUS_MAP = {
-    "burnaby":            "is_burnaby",
-    "surrey":             "is_surrey",
-    "harbour ctr":        "is_harbour_ctr",
-    "other vancouver":    "is_other_van",
-    "off-campus":         "is_off_campus",
-    "great northern way": "is_off_campus",   # merged with off-campus
-}
+# ---------------------------------------------------------------------------
+# Load encoders once at import time
+# ---------------------------------------------------------------------------
+_le_dept   = joblib.load(DATA_PROCESSED / "le_dept_code.pkl")
+_le_degree = joblib.load(DATA_PROCESSED / "le_degree_level.pkl")
 
 
 # ---------------------------------------------------------------------------
-# DB helpers
+# DB helper
 # ---------------------------------------------------------------------------
-
 @contextmanager
-def _clean_db():
-    """sfu_clean.db — primary source."""
+def _db():
     conn = sqlite3.connect(DATA_PROCESSED / "sfu_clean.db")
     conn.row_factory = sqlite3.Row
     try:
@@ -69,312 +53,334 @@ def _clean_db():
         conn.close()
 
 
-@contextmanager
-def _raw_db():
-    """sfu_ml.db — only for columns absent from clean DB."""
-    conn = sqlite3.connect(DATA_RAW / "sfu_ml.db")
-    conn.row_factory = sqlite3.Row
+# ---------------------------------------------------------------------------
+# Utilities
+# ---------------------------------------------------------------------------
+def _term_idx(year: int, term_order: int) -> int:
+    """Sequential term index. 2020 Spring=0, 2020 Summer=1, 2020 Fall=2, ..."""
+    return (year - 2020) * 3 + (term_order - 1)
+
+
+def _encode_dept(dept_code: str) -> int:
     try:
-        yield conn
-    finally:
-        conn.close()
+        return int(_le_dept.transform([dept_code])[0])
+    except ValueError:
+        return 0   # unseen department → default to 0
+
+
+def _encode_degree(degree_level: str) -> int:
+    try:
+        return int(_le_degree.transform([degree_level])[0])
+    except ValueError:
+        return int(_le_degree.transform(["UGRD"])[0])   # default to UGRD
 
 
 # ---------------------------------------------------------------------------
 # Validation
 # ---------------------------------------------------------------------------
-
 def _validate(dept: str, course_num: str, semester: str, year: int):
-    if not isinstance(dept, str) or not dept.strip():
-        raise ValueError(f"dept must be a non-empty string, got: {dept!r}")
-    if not isinstance(course_num, str) or not course_num.strip():
-        raise ValueError(f"course_num must be a non-empty string, got: {course_num!r}")
     if semester not in VALID_SEMESTERS:
         raise ValueError(
             f"semester must be one of {sorted(VALID_SEMESTERS)}, got: {semester!r}"
         )
-    if not isinstance(year, int) or not (2020 <= year <= 2035):
+    if not isinstance(year, int) or not (2020 <= year <= 2040):
         raise ValueError(
-            f"year must be an integer between 2020 and 2035, got: {year!r}"
+            f"year must be an integer between 2020 and 2040, got: {year!r}"
         )
 
 
 # ---------------------------------------------------------------------------
 # Feature group helpers
 # ---------------------------------------------------------------------------
-
-def _get_course_features(dept: str, course_num: str) -> dict:
+def _get_course(dept: str, course_num: str) -> dict:
     """
-    Static per-course fields.
-
-    course_level, degree_level  → sfu_clean.db offerings (first matching row)
-    prereq_count, has_coreqs,
-    units, designation          → sfu_ml.db ml_courses
-
-    Raises ValueError if the course doesn't exist in sfu_clean.db.
+    Static per-course fields from sfu_clean.db offerings table.
+    Raises ValueError if course not found.
     """
-    # Pull ml_course_id + static fields from clean DB
-    with _clean_db() as conn:
+    with _db() as conn:
         row = conn.execute(
             """
             SELECT DISTINCT
-                ml_course_id,
-                course_level,
-                degree_level
+                ml_course_id, dept_code, course_level,
+                degree_level, units, prereq_count
             FROM offerings
-            WHERE dept_code    = ?
-              AND course_number = ?
+            WHERE dept_code = ? AND course_number = ?
             LIMIT 1
             """,
-            (dept.upper(), course_num.upper()),
+            (dept, course_num),
         ).fetchone()
 
     if row is None:
-        raise ValueError(
-            f"Course not found: {dept.upper()} {course_num.upper()}. "
-            "Check dept_code and course_number."
-        )
-
-    ml_course_id = row["ml_course_id"]
-    course_level = row["course_level"]
-    is_grad      = 1 if row["degree_level"] == "GRAD" else 0
-
-    # Pull the four missing columns from raw DB
-    with _raw_db() as conn:
-        raw = conn.execute(
-            """
-            SELECT prereq_count, has_coreqs, units, designation
-            FROM ml_courses
-            WHERE ml_course_id = ?
-            """,
-            (ml_course_id,),
-        ).fetchone()
-
-    if raw:
-        prereq_count    = raw["prereq_count"]  or 0
-        has_coreqs      = raw["has_coreqs"]    or 0
-        units           = raw["units"]         or 3
-        has_designation = 0 if raw["designation"] is None else 1
-    else:
-        prereq_count    = 0
-        has_coreqs      = 0
-        units           = 3
-        has_designation = 0
+        raise ValueError(f"Course not found: {dept} {course_num}. Check dept and course number.")
 
     return {
-        "ml_course_id":    ml_course_id,
-        "course_level":    course_level,
-        "is_grad":         is_grad,
-        "prereq_count":    prereq_count,
-        "has_coreqs":      has_coreqs,
-        "units":           units,
-        "has_designation": has_designation,
+        "ml_course_id":     int(row["ml_course_id"]),
+        "dept_code_enc":    _encode_dept(row["dept_code"] or "UNKNOWN"),
+        "degree_level_enc": _encode_degree(row["degree_level"] or "UGRD"),
+        "course_level":     int(row["course_level"]),
+        "units":            int(row["units"] or 3),
+        "prereq_count":     int(row["prereq_count"] or 0),
     }
 
 
-def _get_term_features(year: int, semester: str) -> dict:
+def _get_term(year: int, term_order: int) -> dict:
     """
-    Term fields from sfu_clean.db offerings table.
-    If the term doesn't exist yet, synthesize it (is_covid_affected=0).
-
-    Returns: ml_term_id, term_order, is_covid_affected
+    Term-level features. is_covid_affected looked up from DB if term exists,
+    otherwise defaults to 0 (all future terms are post-COVID).
     """
-    order = SEMESTER_TO_ORDER[semester]
-
-    with _clean_db() as conn:
+    with _db() as conn:
         row = conn.execute(
             """
-            SELECT DISTINCT ml_term_id, term_order, is_covid_affected
+            SELECT DISTINCT is_covid_affected
             FROM offerings
             WHERE year = ? AND term_order = ?
             LIMIT 1
             """,
-            (year, order),
+            (year, term_order),
         ).fetchone()
 
-    if row is not None:
-        return {
-            "ml_term_id":        row["ml_term_id"],
-            "term_order":        row["term_order"],
-            "is_covid_affected": row["is_covid_affected"],
-        }
-
-    # Synthesize future term ID
-    years_ahead  = year - _LAST_TERM_YEAR
-    orders_ahead = order - _LAST_TERM_ORDER
-    offset       = years_ahead * 3 + orders_ahead
-
     return {
-        "ml_term_id":        _LAST_TERM_ID + offset,
-        "term_order":        order,
-        "is_covid_affected": 0,
+        "term_order":        term_order,
+        "is_covid_affected": int(row["is_covid_affected"]) if row else 0,
     }
 
 
-def _get_historical_features(ml_course_id: int, target_term_order: int) -> dict:
+def _get_history(
+    ml_course_id: int,
+    dept_code: str,
+    target_year: int,
+    target_term_order: int,
+    target_idx: int,
+) -> dict:
     """
-    Aggregate past offering stats from sfu_clean.db offerings table.
-    Only primary sections counted. Cold-start → all zeros.
+    Compute all historical features using only offerings prior to the target term.
 
-    Returns: hist_n_offerings, hist_n_sections_total, hist_capacity_total,
-             hist_enrolled_total, hist_n_spring_offerings,
-             hist_n_summer_offerings, hist_n_fall_offerings,
-             hist_fill_rate_std, n_terms_since_last_offered
+    Mirrors the feature engineering logic exactly:
+    - Aggregate sections to course-term level (sum capacity/enrolled, count sections)
+    - Compute averages, previous values, trends, and streak from those aggregates
+    - Cold-start (no prior history) → filled with dept-level averages
     """
-    with _clean_db() as conn:
+    with _db() as conn:
+        # All course-term aggregates strictly prior to target term
         rows = conn.execute(
-            f"""
-            SELECT ml_term_id, term_order, capacity, enrolled
-            FROM offerings
-            WHERE ml_course_id = ?
-              AND ({_PRIMARY_FILTER})
-            """,
-            (ml_course_id,),
-        ).fetchall()
-
-    zeros = {
-        "hist_n_offerings":           0,
-        "hist_n_sections_total":      0,
-        "hist_capacity_total":        0,
-        "hist_enrolled_total":        0,
-        "hist_n_spring_offerings":    0,
-        "hist_n_summer_offerings":    0,
-        "hist_n_fall_offerings":      0,
-        "hist_fill_rate_std":         0.0,
-        "n_terms_since_last_offered": 0,
-    }
-
-    if not rows:
-        return zeros
-
-    terms_seen     = {}   # ml_term_id → term_order
-    sections_total = 0
-    cap_total      = 0
-    enr_total      = 0
-    fill_rates     = []
-    last_term_id   = 0
-
-    for r in rows:
-        tid   = r["ml_term_id"]
-        order = r["term_order"]
-        cap   = r["capacity"] or 0
-        enr   = r["enrolled"] or 0
-
-        sections_total += 1
-        cap_total      += cap
-        enr_total      += enr
-
-        if cap > 0:
-            fill_rates.append(enr / cap)
-
-        terms_seen[tid] = order
-        if tid > last_term_id:
-            last_term_id = tid
-
-    spring = sum(1 for o in terms_seen.values() if o == 1)
-    summer = sum(1 for o in terms_seen.values() if o == 2)
-    fall   = sum(1 for o in terms_seen.values() if o == 3)
-
-    # Most recent term with this order in DB — use as "current" reference
-    with _clean_db() as conn:
-        ref = conn.execute(
             """
-            SELECT ml_term_id FROM offerings
-            WHERE term_order = ?
-            ORDER BY ml_term_id DESC LIMIT 1
-            """,
-            (target_term_order,),
-        ).fetchone()
-
-    n_terms_since = max(0, (ref["ml_term_id"] - last_term_id)) if ref else 0
-
-    return {
-        "hist_n_offerings":           len(terms_seen),
-        "hist_n_sections_total":      sections_total,
-        "hist_capacity_total":        cap_total,
-        "hist_enrolled_total":        enr_total,
-        "hist_n_spring_offerings":    spring,
-        "hist_n_summer_offerings":    summer,
-        "hist_n_fall_offerings":      fall,
-        "hist_fill_rate_std":         round(statistics.stdev(fill_rates), 4)
-                                      if len(fill_rates) > 1 else 0.0,
-        "n_terms_since_last_offered": n_terms_since,
-    }
-
-
-def _get_delivery_features(ml_course_id: int) -> dict:
-    """
-    Infer delivery mode and campus from historical sections in sfu_clean.db.
-    Uses the dominant (most common) campus and >50% threshold for online/evening.
-    Cold-start defaults to is_burnaby=1.
-
-    Returns: is_online, is_evening, is_burnaby, is_surrey,
-             is_harbour_ctr, is_other_van, is_off_campus
-    """
-    default = {
-        "is_online":      0,
-        "is_evening":     0,
-        "is_burnaby":     1,
-        "is_surrey":      0,
-        "is_harbour_ctr": 0,
-        "is_other_van":   0,
-        "is_off_campus":  0,
-    }
-
-    with _clean_db() as conn:
-        rows = conn.execute(
-            f"""
-            SELECT section_code, campus
+            SELECT
+                year,
+                term_order,
+                SUM(capacity) AS total_capacity,
+                SUM(enrolled) AS total_enrolled,
+                COUNT(*)      AS n_sections
             FROM offerings
             WHERE ml_course_id = ?
-              AND ({_PRIMARY_FILTER})
+              AND (year < ? OR (year = ? AND term_order < ?))
+            GROUP BY year, term_order
+            ORDER BY year, term_order
             """,
-            (ml_course_id,),
+            (ml_course_id, target_year, target_year, target_term_order),
         ).fetchall()
 
     if not rows:
-        return default
+        # Cold start — no prior history at all
+        return _cold_start(dept_code, target_idx)
 
-    total         = len(rows)
-    campus_counts: dict[str, int] = {}
-    online_count  = 0
-    evening_count = 0
-
+    # Build list of offering dicts with computed fill_rate and term_idx
+    offerings = []
     for r in rows:
-        code   = (r["section_code"] or "").upper()
-        campus = (r["campus"]       or "").lower().strip()
+        cap = int(r["total_capacity"] or 0)
+        enr = int(r["total_enrolled"] or 0)
+        offerings.append({
+            "year":           r["year"],
+            "term_order":     r["term_order"],
+            "term_idx":       _term_idx(r["year"], r["term_order"]),
+            "total_capacity": cap,
+            "total_enrolled": enr,
+            "n_sections":     r["n_sections"],
+            "fill_rate":      enr / cap if cap > 0 else 0.0,
+        })
 
-        if code.startswith("O"):
-            online_count  += 1
-        if code.startswith("E"):
-            evening_count += 1
+    # Same-semester offerings only
+    same_sem = [o for o in offerings if o["term_order"] == target_term_order]
 
-        campus_counts[campus] = campus_counts.get(campus, 0) + 1
+    # ── Offering counts ──────────────────────────────────────────────────────
+    hist_n_offerings          = len(offerings)
+    hist_n_this_semester      = len(same_sem)
+    n_distinct_sems           = len(set(o["term_order"] for o in offerings))
 
-    dominant  = max(campus_counts, key=campus_counts.get)
-    flag      = _CAMPUS_MAP.get(dominant, "is_burnaby")
+    # Total same-semester term slots in the grid prior to target
+    # (one slot per year from first_offering onwards where same semester occurs)
+    first_year  = offerings[0]["year"]
+    first_order = offerings[0]["term_order"]
+    deduct = 1 if target_term_order < first_order else 0
+    total_same_sem_prior = max(0, target_year - first_year - deduct)
 
-    result = {k: 0 for k in default}
-    result[flag]           = 1
-    result["is_online"]    = 1 if online_count  / total > 0.5 else 0
-    result["is_evening"]   = 1 if evening_count / total > 0.5 else 0
+    same_semester_offer_ratio = (
+        hist_n_this_semester / total_same_sem_prior
+        if total_same_sem_prior > 0 else 0.0
+    )
 
-    return result
+    # ── Averages ─────────────────────────────────────────────────────────────
+    hist_avg_capacity   = float(np.mean([o["total_capacity"] for o in offerings]))
+    hist_avg_enrollment = float(np.mean([o["total_enrolled"] for o in offerings]))
+    hist_avg_sections   = float(np.mean([o["n_sections"]     for o in offerings]))
+
+    hist_avg_cap_this_sem = (
+        float(np.mean([o["total_capacity"] for o in same_sem]))
+        if same_sem else None
+    )
+    hist_avg_enr_this_sem = (
+        float(np.mean([o["total_enrolled"] for o in same_sem]))
+        if same_sem else None
+    )
+
+    # ── Ratios ───────────────────────────────────────────────────────────────
+    same_sem_cap_ratio = (
+        hist_avg_cap_this_sem / hist_avg_capacity
+        if hist_avg_cap_this_sem is not None and hist_avg_capacity > 0
+        else 0.0
+    )
+    same_sem_enr_ratio = (
+        hist_avg_enr_this_sem / hist_avg_enrollment
+        if hist_avg_enr_this_sem is not None and hist_avg_enrollment > 0
+        else 0.0
+    )
+
+    # ── Previous term values ─────────────────────────────────────────────────
+    prev_cap = float(offerings[-1]["total_capacity"])
+    prev_enr = float(offerings[-1]["total_enrolled"])
+    prev_same_sem_cap = float(same_sem[-1]["total_capacity"]) if same_sem else None
+    prev_same_sem_enr = float(same_sem[-1]["total_enrolled"]) if same_sem else None
+
+    # ── Trends (linear slope over all prior offerings) ───────────────────────
+    if len(offerings) >= 2:
+        x = np.arange(len(offerings))
+        cap_trend = float(np.polyfit(x, [o["total_capacity"] for o in offerings], 1)[0])
+        enr_trend = float(np.polyfit(x, [o["total_enrolled"] for o in offerings], 1)[0])
+    else:
+        cap_trend = 0.0
+        enr_trend = 0.0
+
+    # ── n_terms_since_last_offered ───────────────────────────────────────────
+    last_offering_idx    = offerings[-1]["term_idx"]
+    n_terms_since        = float(target_idx - last_offering_idx)
+
+    # ── n_consecutive_same_semester_streak ───────────────────────────────────
+    # Walk backwards through same-semester years.
+    # Stop at first year the course did NOT run (not in same_sem).
+    streak = 0
+    if same_sem:
+        offered_years = set(o["year"] for o in same_sem)
+        y = max(offered_years)
+        while True:
+            # Check if (y, target_term_order) is in the grid at all
+            if _term_idx(y, target_term_order) < _term_idx(first_year, first_order):
+                break   # before grid start
+            if y in offered_years:
+                streak += 1
+                y -= 1
+            else:
+                break   # gap in offerings → streak ends
+
+    # ── high_fill_rate_frequency ─────────────────────────────────────────────
+    high_fill_freq = float(
+        np.mean([1.0 if o["fill_rate"] >= HIGH_FILL_THRESHOLD else 0.0 for o in offerings])
+    )
+
+    # ── course_age_terms ─────────────────────────────────────────────────────
+    # How many term slots from first offering to target term (inclusive)
+    first_idx    = offerings[0]["term_idx"]
+    course_age   = float(target_idx - first_idx + 1)
+
+    def _or_zero(v):
+        return v if v is not None else 0.0
+
+    return {
+        # offered features
+        "hist_n_offerings":                   hist_n_offerings,
+        "hist_n_this_semester_offerings":     hist_n_this_semester,
+        "same_semester_offer_ratio":          same_semester_offer_ratio,
+        "n_distinct_semesters_offered":       n_distinct_sems,
+        "n_terms_since_last_offered":         n_terms_since,
+        "n_consecutive_same_semester_streak": streak,
+        # capacity features
+        "hist_avg_capacity_per_offering":     hist_avg_capacity,
+        "hist_avg_capacity_this_semester":    _or_zero(hist_avg_cap_this_sem),
+        "same_semester_capacity_ratio":       same_sem_cap_ratio,
+        "previous_term_capacity":             prev_cap,
+        "previous_same_semester_capacity":    _or_zero(prev_same_sem_cap),
+        "capacity_trend":                     cap_trend,
+        "hist_avg_sections_per_offering":     hist_avg_sections,
+        "hist_avg_enrollment_per_offering":   hist_avg_enrollment,
+        # enrollment features
+        "hist_avg_enrollment_this_semester":  _or_zero(hist_avg_enr_this_sem),
+        "same_semester_enrollment_ratio":     same_sem_enr_ratio,
+        "previous_same_semester_enrollment":  _or_zero(prev_same_sem_enr),
+        "previous_term_enrollment":           prev_enr,
+        "enrollment_trend":                   enr_trend,
+        "high_fill_rate_frequency":           high_fill_freq,
+        "course_age_terms":                   course_age,
+    }
+
+
+def _cold_start(dept_code: str, target_idx: int) -> dict:
+    """
+    Fallback features for a course with no prior history.
+    Capacity/enrollment features filled with dept-level averages from clean DB.
+    Offering features default to zeros/sentinels.
+    """
+    with _db() as conn:
+        row = conn.execute(
+            """
+            SELECT
+                AVG(capacity) AS avg_cap,
+                AVG(enrolled) AS avg_enr,
+                AVG(CAST(enrolled AS REAL) / NULLIF(capacity, 0)) AS avg_fill
+            FROM offerings
+            WHERE dept_code = ?
+            """,
+            (dept_code,),
+        ).fetchone()
+
+    avg_cap  = float(row["avg_cap"]  or 30.0)
+    avg_enr  = float(row["avg_enr"]  or 20.0)
+    avg_fill = float(row["avg_fill"] or 0.5)
+
+    return {
+        "hist_n_offerings":                   0,
+        "hist_n_this_semester_offerings":     0,
+        "same_semester_offer_ratio":          0.0,
+        "n_distinct_semesters_offered":       0,
+        "n_terms_since_last_offered":         float(COLD_START_TERMS_SINCE),
+        "n_consecutive_same_semester_streak": 0,
+        "hist_avg_capacity_per_offering":     avg_cap,
+        "hist_avg_capacity_this_semester":    avg_cap,
+        "same_semester_capacity_ratio":       1.0,
+        "previous_term_capacity":             avg_cap,
+        "previous_same_semester_capacity":    avg_cap,
+        "capacity_trend":                     0.0,
+        "hist_avg_sections_per_offering":     1.0,
+        "hist_avg_enrollment_per_offering":   avg_enr,
+        "hist_avg_enrollment_this_semester":  avg_enr,
+        "same_semester_enrollment_ratio":     1.0,
+        "previous_same_semester_enrollment":  avg_enr,
+        "previous_term_enrollment":           avg_enr,
+        "enrollment_trend":                   0.0,
+        "high_fill_rate_frequency":           avg_fill,
+        "course_age_terms":                   float(target_idx + 1),
+    }
 
 
 # ---------------------------------------------------------------------------
 # Public entry point
 # ---------------------------------------------------------------------------
-
 def build_features(dept: str, course_num: str, semester: str, year: int) -> dict:
     """
-    Validate inputs and build the complete 26-key feature dict.
+    Validate inputs and build the complete feature dict.
 
     Parameters
     ----------
-    dept       : e.g. "CMPT", "MATH"
-    course_num : e.g. "225", "360W"
-    semester   : "spring" | "summer" | "fall"
+    dept       : e.g. "CMPT", "cmpt", "Cmpt"   (normalised to upper internally)
+    course_num : e.g. "225", "360W"             (normalised to upper internally)
+    semester   : "spring" | "summer" | "fall"   (case-insensitive)
     year       : e.g. 2027
 
     Returns
@@ -385,20 +391,23 @@ def build_features(dept: str, course_num: str, semester: str, year: int) -> dict
     ------
     ValueError — bad inputs or course not found
     """
-    semester = semester.lower()
+    semester   = semester.lower().strip()
+    dept       = dept.upper().strip()
+    course_num = course_num.upper().strip()
+
     _validate(dept, course_num, semester, year)
 
-    course_feats   = _get_course_features(dept, course_num)
-    term_feats     = _get_term_features(year, semester)
-    hist_feats     = _get_historical_features(
-                         course_feats["ml_course_id"],
-                         term_feats["term_order"],
-                     )
-    delivery_feats = _get_delivery_features(course_feats["ml_course_id"])
+    term_order = SEMESTER_TO_ORDER[semester]
+    target_idx = _term_idx(year, term_order)
 
-    return {
-        **course_feats,
-        **term_feats,
-        **hist_feats,
-        **delivery_feats,
-    }
+    course = _get_course(dept, course_num)
+    term   = _get_term(year, term_order)
+    hist   = _get_history(
+        course["ml_course_id"],
+        dept,
+        target_year=year,
+        target_term_order=term_order,
+        target_idx=target_idx,
+    )
+
+    return {**course, **term, **hist}
