@@ -1,0 +1,60 @@
+name: Semester Update
+
+on:
+  schedule:
+    # Runs on the 1st of the middle month of each semester at 09:00 UTC
+    # Spring (Jan-Apr)  → March 1
+    # Summer (May-Aug)  → July 1
+    # Fall   (Sep-Dec)  → November 1
+    - cron: "0 9 1 3 *" # Spring  — March 1
+    - cron: "0 9 1 7 *" # Summer  — July 1
+    - cron: "0 9 1 11 *" # Fall    — November 1
+  workflow_dispatch:
+    inputs:
+      run_date:
+        description: "Override date (YYYY-MM-DD). Leave blank to use today."
+        required: false
+        default: ""
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Configure git
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Run update pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          DATE_ARG="${{ github.event.inputs.run_date }}"
+          if [ -n "$DATE_ARG" ]; then
+            python update/run_update.py "$DATE_ARG"
+          else
+            python update/run_update.py
+          fi
+
+      - name: Notify on failure
+        if: failure()
+        run: |
+          echo "Pipeline failed. Check logs above."
+          echo "All changes have been rolled back by run_update.py."
