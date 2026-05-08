@@ -6,6 +6,7 @@ Run with: streamlit run app.py
 import os
 import sys
 import json
+from pathlib import Path
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src"))
 
@@ -284,6 +285,15 @@ def _get_context() -> dict:
     return get_all_context()
 
 
+@st.cache_data
+def _get_eval_results() -> dict:
+    path = Path(__file__).parent / "models" / "eval_results.json"
+    if path.exists():
+        with open(path) as f:
+            return json.load(f)
+    return {}
+
+
 # ── result renderer ───────────────────────────────────────────────────────────
 def render_result(result: dict):
     if result["status"] == "error":
@@ -349,7 +359,9 @@ def render_result(result: dict):
     if result["is_unlikely"]:
         st.warning(f"⚠ Only {prob * 100:.0f}% chance of running. Seat estimates may be unreliable.")
 
-    st.caption("Trained on 2020–2025 · Evaluated on Spring 2026 · Estimates only")
+    ev        = _get_eval_results()
+    test_term = ev.get("test_term", "latest term").title()
+    st.caption(f"Evaluated on {test_term} · Estimates only")
 
 
 # ── Gemini prompt builders ────────────────────────────────────────────────────
@@ -366,6 +378,7 @@ st.markdown("""
 
 ctx    = _get_context()
 gemini = _get_gemini()
+ev     = _get_eval_results()
 
 tab_chat, tab_manual, tab_about = st.tabs(["CHAT", "MANUAL", "ABOUT"])
 
@@ -477,49 +490,101 @@ with tab_about:
     st.markdown("""
 <div class="about-body">
 A machine learning system that predicts future SFU course offerings using
-five years of historical enrollment data. Given any course, semester, and year,
+historical enrollment data. Given any course, semester, and year,
 it returns offering probability, expected seat capacity, and expected enrollment.
 </div>
 """, unsafe_allow_html=True)
 
     st.markdown('<div style="height:1rem"></div>', unsafe_allow_html=True)
 
-    st.markdown("""
+    # ── metric grid (dynamic from eval_results.json) ──────────────────────
+    auc            = ev.get("offered",    {}).get("auc",              "—")
+    fully_correct  = ev.get("system",     {}).get("fully_correct_pct","—")
+    cap_mae        = ev.get("capacity",   {}).get("mae",              "—")
+    enr_mae        = ev.get("enrollment", {}).get("mae",              "—")
+    test_term      = ev.get("test_term",  "latest term").title()
+
+    auc_str = f"{auc:.3f}"          if isinstance(auc,           float) else str(auc)
+    fc_str  = f"{fully_correct:.0f}%" if isinstance(fully_correct, float) else str(fully_correct)
+    cap_str = f"{cap_mae:.1f}"      if isinstance(cap_mae,        float) else str(cap_mae)
+    enr_str = f"{enr_mae:.1f}"      if isinstance(enr_mae,        float) else str(enr_mae)
+
+    st.markdown(f"""
 <div class="metric-grid">
     <div class="metric-cell">
-        <div class="metric-cell-val">0.865</div>
-        <div class="metric-cell-lbl">Offered AUC (2026)</div>
+        <div class="metric-cell-val">{auc_str}</div>
+        <div class="metric-cell-lbl">Offered AUC ({test_term})</div>
     </div>
     <div class="metric-cell">
-        <div class="metric-cell-val">52%</div>
+        <div class="metric-cell-val">{fc_str}</div>
         <div class="metric-cell-lbl">Fully correct (3/3)</div>
     </div>
     <div class="metric-cell">
-        <div class="metric-cell-val">14.6</div>
+        <div class="metric-cell-val">{cap_str}</div>
         <div class="metric-cell-lbl">Capacity MAE (seats)</div>
     </div>
     <div class="metric-cell">
-        <div class="metric-cell-val">11.9</div>
+        <div class="metric-cell-val">{enr_str}</div>
         <div class="metric-cell-lbl">Enrollment MAE (students)</div>
     </div>
 </div>
-<div class="disclaimer" style="margin-top:0.3rem">
-    Evaluated on Spring 2026 — 1,522 courses the model had never seen.
-    "Fully correct" = all three predictions within ±10 seats/students or ±20%.
-    Only 3% of courses were completely wrong across all three predictions.
-</div>
 """, unsafe_allow_html=True)
+
+    # ── system score bar chart ────────────────────────────────────────────
+    sys_scores = ev.get("system", {})
+    s3 = sys_scores.get("fully_correct_pct", 0)
+    s2 = sys_scores.get("one_wrong_pct",     0)
+    s1 = sys_scores.get("two_wrong_pct",     0)
+    s0 = sys_scores.get("all_wrong_pct",     0)
+
+    def _bar(pct, color, label):
+        w = max(pct, 1)
+        return (
+            f'<div style="margin-bottom:0.6rem;">'
+            f'<div style="font-family:DM Mono,monospace;font-size:0.65rem;'
+            f'letter-spacing:1.5px;text-transform:uppercase;color:#555;'
+            f'margin-bottom:0.25rem;">{label}</div>'
+            f'<div style="display:flex;align-items:center;gap:0.6rem;">'
+            f'<div style="flex:1;height:6px;background:#1e1e1e;border-radius:3px;">'
+            f'<div style="width:{w}%;height:6px;background:{color};border-radius:3px;"></div>'
+            f'</div>'
+            f'<span style="font-family:DM Mono,monospace;font-size:0.75rem;'
+            f'color:#aaa;min-width:3rem;text-align:right;">{pct:.1f}%</span>'
+            f'</div></div>'
+        )
+
+    st.markdown(
+        '<div style="margin:1rem 0 0.3rem;font-family:DM Mono,monospace;'
+        'font-size:0.65rem;letter-spacing:2px;text-transform:uppercase;'
+        'color:#555;">System accuracy — all 3 predictions simultaneously</div>',
+        unsafe_allow_html=True
+    )
+    st.markdown(
+        _bar(s3, "#22c55e", "3/3 — Fully correct") +
+        _bar(s2, "#aec7e8", "2/3 — One wrong") +
+        _bar(s1, "#f59e0b", "1/3 — Two wrong") +
+        _bar(s0, "#cc0000", "0/3 — All wrong"),
+        unsafe_allow_html=True
+    )
+
+    one_wrong_pct = s2
+    all_wrong_pct = s0
+    st.markdown(
+        f'<div class="disclaimer" style="margin-top:0.3rem">'
+        f'Evaluated on {test_term}. '
+        f'"Fully correct" = all three predictions within ±10 seats/students or ±20%. '
+        f'Only {all_wrong_pct:.0f}% of courses were completely wrong across all three predictions.'
+        f'</div>',
+        unsafe_allow_html=True
+    )
 
     st.markdown('<div style="height:1rem"></div>', unsafe_allow_html=True)
     st.markdown('<div class="divider"></div>', unsafe_allow_html=True)
 
-    st.markdown("""
+    st.markdown(f"""
 <table class="data-table">
-    <tr><td>Terms collected</td><td>19 &nbsp;(Spring 2020 — Spring 2026)</td></tr>
-    <tr><td>Clean section rows</td><td>33,659</td></tr>
-    <tr><td>Training set</td><td>2020 – 2025 &nbsp;(after refit)</td></tr>
-    <tr><td>Final evaluation</td><td>Spring 2026</td></tr>
     <tr><td>Source</td><td>SFU Coursys API</td></tr>
+    <tr><td>Evaluation term</td><td>{test_term}</td></tr>
     <tr><td>Offered model</td><td>Gradient Boosting</td></tr>
     <tr><td>Capacity model</td><td>Random Forest</td></tr>
     <tr><td>Enrollment model</td><td>Random Forest</td></tr>
