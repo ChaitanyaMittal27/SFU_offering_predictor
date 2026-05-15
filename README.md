@@ -6,9 +6,9 @@ A machine learning system that predicts future SFU course offerings using histor
 
 ## Live App
 
-🤗 Deployed on Hugging Face Spaces — see the [deploy repository](https://huggingface.co/spaces/ChaitanyaMittal27/sfucoursepredictor) for the live app.
+🤗 **[sfucoursepredictor.hf.space](https://huggingface.co/spaces/ChaitanyaMittal27/sfucoursepredictor)**
 
-> **Note:** This repository contains source code and notebooks only. The deploy repository (private) contains the trained model files and databases required to run the app.
+The app is deployed from a separate branch that includes the trained model files and databases. See the [hf-deploy branch](https://github.com/ChaitanyaMittal27/SFU_offering_predictor/tree/hf-deploy) for details.
 
 ## What It Predicts
 
@@ -52,8 +52,8 @@ Evaluated on Spring 2026 (1,522 courses the models had never seen):
 
 ```
 SFU_offering_predictor/
-├── app.py                                    # Streamlit entry point (for local)
-├── gemini.py                                 # Gemini API layer (for local)
+├── app.py                                    # Streamlit entry point
+├── gemini.py                                 # Gemini API layer
 ├── src/
 │   ├── collect/                              # One-time data collection scripts
 │   ├── context.py                            # Valid input context for Gemini
@@ -76,6 +76,7 @@ SFU_offering_predictor/
 ├── .github/workflows/
 │   └── update.yml                            # Scheduled update (Mar 1 / Jul 1 / Nov 1)
 ├── figures/                                  # EDA and evaluation charts
+├── sql/                                      # DB setup scripts
 ├── data/                                     # gitignored — local only
 ├── models/                                   # gitignored — local only
 └── requirements.txt
@@ -89,9 +90,46 @@ Every semester, GitHub Actions:
 2. Re-runs cleaning and feature engineering
 3. Evaluates existing models against the new term
 4. Refits all three models on the expanded dataset
-5. Commits and pushes → Hugging Face auto-redeploys
+5. Pushes updated models → Hugging Face auto-redeploys
 
 If any step fails, all changes are rolled back via `git checkout -- .`
+
+## Train Your Own
+
+To collect the data and train from scratch locally:
+
+```bash
+# 1. Set up environment
+python -m venv venv
+venv\Scripts\activate        # Windows
+# source venv/bin/activate   # Mac/Linux
+pip install -r requirements.txt
+
+# 2. Set up the database
+# Edit sql/02_seed_terms.sql if you want to add/remove terms
+python sql/run_setup.py
+
+# 3. Collect course catalog and offerings
+python src/collect/01_init_db.py
+python src/collect/02_collect_offerings.py   # takes ~1 hour
+
+# 4. Run notebooks in order
+# notebooks/01_cleaning.ipynb
+# notebooks/02_eda.ipynb              (optional — exploration only)
+# notebooks/03_feature_engineering.ipynb
+# notebooks/04a_model_offered.ipynb
+# notebooks/04b_model_capacity.ipynb
+# notebooks/04c_model_enrollment.ipynb
+# notebooks/05_combined_eval.ipynb
+# notebooks/06_refit.ipynb
+
+# 5. Add your Gemini API key
+# Create .streamlit/secrets.toml:
+# GEMINI_API_KEY = "your-key-here"
+
+# 6. Run the app
+streamlit run app.py
+```
 
 ## Tech Stack
 

@@ -1,43 +1,19 @@
 # ============================================================
 # SFU Course Predictor — .gitignore
 # ============================================================
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.py[codz]
+*.py[cod]
 *$py.class
-
-# C extensions
 *.so
+*.pyo
 
 # Distribution / packaging
-.Python
 build/
-develop-eggs/
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-share/python-wheels/
 *.egg-info/
-.installed.cfg
 *.egg
-MANIFEST
-
-# PyInstaller
-#   Usually these files are written by a python script from a template
-#   before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
-
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
 
 # Environment
 venv/
@@ -45,21 +21,9 @@ venv/
 env/
 .env
 
-# Python
-__pycache__/
-*.py[cod]
-*.pyo
-.ipynb_checkpoints/
-
-# Data — never commit the DB or processed CSVs
-data/raw/sfu_ml.db
-data/processed/
-
-# Models — large binary files, regenerate from notebooks
-models/*.pkl
-
 # Jupyter
 .jupyter/
+.ipynb_checkpoints/
 
 # OS
 .DS_Store
@@ -68,23 +32,26 @@ Thumbs.db
 # IDE
 .vscode/
 .idea/
+
 # Streamlit
 .streamlit/secrets.toml
 
-#local resources
+# Local resources
 local_resources/
 
-# test_outputs
-src/test/coursys_api/output/
-src/test/verify_db/verify_db_output.txt
+# Test outputs
+src/tests/coursys_api/output/
+src/tests/verify_db/verify_db_output.txt
 
 # Logs
-# 02_collect_offerings.py
 data/raw/collection_log.txt
 
-# models
+# Data — large/regenerable, not for portfolio repo
+data/raw/sfu_ml.db
+data/processed/
+
+# Models — large binaries, not for portfolio repo
 models/
 
-# data pkls
-data/processed/
-data/raw/sfu_ml.db
+# Scratch
+dir.txt
