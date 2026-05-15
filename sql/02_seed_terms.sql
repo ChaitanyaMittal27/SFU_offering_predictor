@@ -42,7 +42,11 @@ VALUES
     (2024, 'summer', 2, 1244, 0),
     (2024, 'fall',   3, 1247, 0),
 
-    -- 2025 (test data — model is evaluated on this)
+    -- 2025 
     (2025, 'spring', 1, 1251, 0),
     (2025, 'summer', 2, 1254, 0),
-    (2025, 'fall',   3, 1257, 0);
+    (2025, 'fall',   3, 1257, 0),
+
+    -- 2026 spring (test data as present)
+    (2026, 'spring', 1, 1261, 0);
+

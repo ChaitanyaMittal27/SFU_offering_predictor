@@ -25,7 +25,7 @@ python-dotenv==1.0.1
 google-genai==0.8.0
 
 # --- app (later stages)
-streamlit==1.40.0
+streamlit==1.45.0
 
 # --- testing
 pytest==7.4.2

@@ -1,6 +1,6 @@
 {
   "test_term": "spring 2026",
-  "generated_at": "2026-05-08",
+  "generated_at": "2026-05-14",
   "offered": {
     "auc": 0.8644,
     "f1": 0.7575,
@@ -16,7 +16,7 @@
   },
   "enrollment": {
     "mae": 11.85,
-    "rmse": 24.12,
+    "rmse": 24.13,
     "r2": 0.9059,
     "bias": -4.28
   },
